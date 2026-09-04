@@ -1,0 +1,34 @@
+.header {
+  padding-top: var(--page-top);
+  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.center {
+  text-align: center;
+}
+
+.center .lede {
+  margin-inline: auto;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-5);
+}
+
+.title {
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+.center .title {
+  margin-inline: auto;
+}
+
+.lede {
+  margin-top: var(--space-5);
+  max-width: 44ch;
+}
+
+.extra {
+  margin-top: var(--space-6);
+}

@@ -1,0 +1,55 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  row-gap: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: var(--section-y);
+}
+
+.card {
+  display: block;
+}
+
+.media {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.figure {
+  transition: transform 700ms var(--ease);
+  will-change: transform;
+}
+
+.card:hover .figure {
+  transform: scale(1.02);
+}
+
+.name {
+  margin-top: var(--space-4);
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-tight);
+  transition: color var(--dur-base) var(--ease);
+}
+
+.card:hover .name {
+  color: var(--accent);
+}
+
+.tagline {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  text-wrap: pretty;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

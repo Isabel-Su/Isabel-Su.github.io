@@ -1,0 +1,127 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur-base) var(--ease),
+    border-color var(--dur-base) var(--ease);
+}
+
+.barScrolled {
+  background: var(--paper);
+  border-bottom-color: var(--rule);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+}
+
+/* Corner monogram — the only place the display face appears at small size. */
+.mark {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'SOFT' 20, 'WONK' 1;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.mark:hover {
+  color: var(--accent);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.link {
+  position: relative;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  padding-block: var(--space-2);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+/* The active underline is always in the DOM at scaleX(0), so activating it is a
+   transform on an existing element rather than a layout-triggering insert. */
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.35em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.linkActive {
+  color: var(--accent);
+}
+
+.linkActive::after {
+  transform: scaleX(1);
+}
+
+/* ---- Mobile --------------------------------------------------------------- */
+
+.menuButton {
+  display: none;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+}
+
+.overlayNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.overlayLink {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 9vw, 3rem);
+  letter-spacing: var(--tracking-display);
+  font-variation-settings: 'SOFT' 20, 'WONK' 1;
+  color: var(--ink);
+}
+
+.overlayLink:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .links {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}

@@ -1,0 +1,10 @@
+.main {
+  min-height: 60vh;
+}
+
+/* Reserves roughly a page of height while a route chunk resolves, so the footer
+   does not fly up and back down on a slow connection. Blank rather than a
+   spinner — chunks are small enough that a spinner would flash and vanish. */
+.fallback {
+  min-height: 80vh;
+}

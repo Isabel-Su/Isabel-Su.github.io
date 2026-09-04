@@ -1,0 +1,52 @@
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--section-y);
+  padding-top: clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--rule);
+}
+
+.link {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.prev {
+  grid-column: 1;
+}
+
+/* Right-aligned so the pair reads as a spread rather than a stack. */
+.next {
+  grid-column: 2;
+  text-align: right;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  transition: color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+
+.prev:hover .title {
+  color: var(--accent);
+  transform: translateX(-4px);
+}
+
+.next:hover .title {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .next {
+    grid-column: 1;
+    text-align: left;
+  }
+}

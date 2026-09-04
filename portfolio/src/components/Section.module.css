@@ -1,0 +1,45 @@
+.section {
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+/* Section numeral — small, brown, sans. A quiet editorial marker rather than
+   decoration. */
+.index {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--clay);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.35em;
+}
+
+.title {
+  font-size: var(--text-xl);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.body {
+  min-width: 0;
+}
+
+@media (max-width: 860px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}

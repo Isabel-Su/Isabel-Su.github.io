@@ -1,0 +1,128 @@
+/* ---- Hero ----------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* svh, not vh — vh is measured against the expanded browser chrome on mobile,
+     which pushes the statement below the fold on first paint. */
+  min-height: 88svh;
+  padding-top: var(--page-top);
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.eyebrow {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.name {
+  /* Nudged past the container edge so the stem of the I sits on the margin
+     rather than being optically indented by its own side bearing. */
+  margin-left: -0.045em;
+  max-width: 12ch;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(2rem, 5vw, 3rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.statement {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+/* ---- Section index -------------------------------------------------------- */
+
+.index {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 12rem) minmax(0, 1fr) 2rem;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.rowIndex {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--clay);
+  font-variant-numeric: tabular-nums;
+}
+
+.rowLabel {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  /* transform-origin left keeps the shift a pure translate, no reflow. */
+  transition: color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+
+.rowBlurb {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  transition: color var(--dur-base) var(--ease);
+}
+
+.rowArrow {
+  justify-self: end;
+  color: var(--ink-faint);
+  transition: color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+
+.row:hover .rowLabel {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+.row:hover .rowBlurb {
+  color: var(--ink-soft);
+}
+
+.row:hover .rowArrow {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+/* ---- Currently ------------------------------------------------------------ */
+
+.currently {
+  display: grid;
+  gap: var(--space-3);
+  padding-bottom: var(--section-y);
+}
+
+.currentlyText {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink-soft);
+  max-width: 40ch;
+}
+
+.currentlyText strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+@media (max-width: 780px) {
+  .row {
+    grid-template-columns: 2.5rem minmax(0, 1fr) 1.5rem;
+    row-gap: var(--space-2);
+  }
+
+  .rowBlurb {
+    grid-column: 2 / 4;
+  }
+}

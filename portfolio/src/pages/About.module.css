@@ -1,0 +1,86 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  padding-bottom: var(--section-y);
+}
+
+.portrait {
+  position: sticky;
+  /* Clears the fixed nav bar when it sticks. */
+  top: calc(var(--nav-h) + var(--space-5));
+}
+
+.paragraph {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.paragraph + .paragraph {
+  margin-top: var(--space-4);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-5);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--rule);
+}
+
+.fact {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.factValue {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+/* ---- Contact -------------------------------------------------------------- */
+
+.contact {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--rule);
+}
+
+.contactHead {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.contactTitle {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--tracking-display);
+}
+
+.contactNote {
+  color: var(--ink-soft);
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+.signoff {
+  padding-block: var(--section-y);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait {
+    position: static;
+    max-width: 22rem;
+  }
+}

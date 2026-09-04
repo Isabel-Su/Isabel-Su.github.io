@@ -1,0 +1,86 @@
+/*
+ * Design tokens. Everything visual on the site resolves back to this file —
+ * retuning the palette, type scale, or rhythm should never require touching a
+ * component.
+ */
+
+:root {
+  /* ---- Color: warm neutrals, one muted green ------------------------------
+   * The green is deliberately dark and desaturated so it reads as a second ink
+   * rather than a highlight. It is only ever used on links, the active nav
+   * item, and small typographic marks — never as a fill behind text.
+   */
+  --paper: #f7f4ef; /* warm off-white ground */
+  --paper-sunk: #efeae2; /* recessed panels, empty image frames */
+  --paper-deep: #e7e0d5; /* rare third step, hover on sunk surfaces */
+
+  --ink: #211e1a; /* warm near-black — body and display type */
+  --ink-soft: #57514a; /* secondary text, captions, lede */
+  --ink-faint: #8c847a; /* metadata, dates, eyebrow labels */
+
+  --rule: #ddd6cc; /* hairline dividers and image frames */
+  --clay: #6b5c4d; /* warm brown, section numerals */
+
+  --accent: #4a5d4e; /* muted deep green */
+  --accent-lift: #3c4d40; /* hover */
+  --accent-wash: #e6e9e3; /* very rare tint, selection background */
+
+  /* ---- Type ------------------------------------------------------------- */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype',
+    Palatino, Georgia, serif;
+  --font-sans: 'Inter Tight Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Fluid scale — clamp() means no breakpoint-by-breakpoint font-size juggling */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-xl: clamp(1.25rem, 1.13rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.625rem, 1.35rem + 1.35vw, 2.375rem);
+  --text-3xl: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem);
+  --text-display: clamp(2.75rem, 1.5rem + 5.8vw, 6.5rem);
+
+  --leading-tight: 1.04;
+  --leading-snug: 1.22;
+  --leading-body: 1.62;
+
+  --tracking-display: -0.028em;
+  --tracking-tight: -0.014em;
+  --tracking-eyebrow: 0.13em;
+
+  /* ---- Space ------------------------------------------------------------ */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* Vertical rhythm between major page sections — the main "breathing" dial */
+  --section-y: clamp(4rem, 9vw, 9rem);
+  --page-top: clamp(6.5rem, 13vw, 11rem);
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --container: 74rem;
+  --container-narrow: 46rem;
+  --measure: 62ch; /* comfortable reading width for body copy */
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 620ms;
+
+  --nav-h: 4.5rem;
+}
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--ink);
+}

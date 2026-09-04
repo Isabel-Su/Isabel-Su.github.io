@@ -1,0 +1,67 @@
+.list {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.item {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  color: var(--ink-faint);
+}
+
+/* Underline slides in from the left on hover — a transform on a pseudo element,
+   so no layout work. */
+.value {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.value::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.12em;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.value:hover {
+  color: var(--accent);
+}
+
+.value:hover::after {
+  transform: scaleX(1);
+}
+
+/* Compact variant used in the footer. */
+.sm {
+  gap: var(--space-3);
+}
+
+.sm .item {
+  gap: var(--space-1);
+}
+
+.sm .value {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+}
+
+@media (min-width: 720px) {
+  .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}

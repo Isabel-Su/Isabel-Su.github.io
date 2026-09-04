@@ -1,0 +1,78 @@
+.card {
+  display: block;
+}
+
+.media {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* Slow, small scale on the image only. The frame clips it, so nothing around it
+   moves and no layout is recalculated. */
+.figure {
+  transition: transform 700ms var(--ease);
+  will-change: transform;
+}
+
+.card:hover .figure {
+  transform: scale(1.018);
+}
+
+.text {
+  margin-top: var(--space-5);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.period {
+  color: var(--rule);
+}
+
+.period::before {
+  content: '';
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  margin-right: var(--space-3);
+  vertical-align: middle;
+  background: var(--rule);
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-tight);
+  transition: color var(--dur-base) var(--ease);
+}
+
+.card:hover .title {
+  color: var(--accent);
+}
+
+.tagline {
+  margin-top: var(--space-3);
+  color: var(--ink-soft);
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.tech {
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}

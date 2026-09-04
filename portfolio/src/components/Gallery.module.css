@@ -1,0 +1,51 @@
+/* Multi-column masonry. Mixed aspect ratios pack naturally and the browser does
+   all the measuring — no layout JS, no resize observers, no shift. */
+.masonry {
+  column-count: 3;
+  column-gap: var(--space-5);
+}
+
+.masonry .item {
+  /* Stops a photo from being split across two columns. */
+  break-inside: avoid;
+  margin-bottom: var(--space-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.trigger {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: zoom-in;
+}
+
+/* The only hover on an image anywhere: a very small lift. transform only. */
+.figure {
+  transition: transform var(--dur-base) var(--ease);
+  will-change: transform;
+}
+
+.trigger:hover .figure {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 1024px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .masonry {
+    column-count: 1;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

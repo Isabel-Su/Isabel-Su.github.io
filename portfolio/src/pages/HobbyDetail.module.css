@@ -1,0 +1,40 @@
+.back {
+  display: inline-block;
+  padding-top: calc(var(--nav-h) + var(--space-6));
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.back + header {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.intro {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.introText {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+.gallery {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.lead {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.row {
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+}
