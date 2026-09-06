@@ -1,4 +1,5 @@
 import { m, useReducedMotion } from 'framer-motion'
+import { Copy } from './Placeholder'
 import { fadeUp, fadeUpTight, stagger, still } from '../motion/tokens'
 import styles from './PageHeader.module.css'
 
@@ -22,17 +23,17 @@ export function PageHeader({ eyebrow, title, lede, children, align = 'left' }) {
     >
       {eyebrow && (
         <m.p className={`eyebrow ${styles.eyebrow}`} variants={reduced ? still : fadeUpTight}>
-          {eyebrow}
+          <Copy>{eyebrow}</Copy>
         </m.p>
       )}
 
       <m.h1 className={`display ${styles.title}`} variants={reduced ? still : fadeUp}>
-        {title}
+        <Copy>{title}</Copy>
       </m.h1>
 
       {lede && (
         <m.p className={`lede ${styles.lede}`} variants={reduced ? still : fadeUp}>
-          {lede}
+          <Copy>{lede}</Copy>
         </m.p>
       )}
 

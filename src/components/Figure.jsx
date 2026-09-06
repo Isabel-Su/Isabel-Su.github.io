@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getImage } from '../lib/images'
+import { Copy } from './Placeholder'
 import styles from './Figure.module.css'
 
 /**
@@ -33,12 +34,14 @@ export function Figure({
     return (
       <figure className={`${styles.figure} ${className}`} {...rest}>
         <div className={`${styles.frame} ${styles.placeholder}`} style={frameStyle}>
-          {/* Naming the expected file turns an empty slot into an instruction. */}
+          <span className={styles.placeholderFlag}>Placeholder image</span>
           <span className={styles.placeholderKey}>{image?.key || 'image'}</span>
           <span className={styles.placeholderRatio}>{ratio}</span>
         </div>
         {showCaption && image?.caption ? (
-          <figcaption className={styles.caption}>{image.caption}</figcaption>
+          <figcaption className={styles.caption}>
+            <Copy>{image.caption}</Copy>
+          </figcaption>
         ) : null}
       </figure>
     )
@@ -65,8 +68,10 @@ export function Figure({
         </picture>
       </div>
       {showCaption && image?.caption ? (
-        <figcaption className={styles.caption}>{image.caption}</figcaption>
-      ) : null}
+          <figcaption className={styles.caption}>
+            <Copy>{image.caption}</Copy>
+          </figcaption>
+        ) : null}
     </figure>
   )
 }

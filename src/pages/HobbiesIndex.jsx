@@ -1,4 +1,5 @@
 import { hobbies } from '../content/hobbies'
+import { Copy } from '../components/Placeholder'
 import { Figure } from '../components/Figure'
 import { PageHeader } from '../components/PageHeader'
 import { PrefetchLink } from '../components/PrefetchLink'
@@ -31,7 +32,9 @@ export default function HobbiesIndex() {
                 />
               </div>
               <h2 className={styles.name}>{hobby.name}</h2>
-              <p className={styles.tagline}>{hobby.tagline}</p>
+              <p className={styles.tagline}>
+                <Copy>{hobby.tagline}</Copy>
+              </p>
             </PrefetchLink>
           </StaggerItem>
         ))}

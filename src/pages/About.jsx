@@ -1,5 +1,5 @@
 import { about } from '../content/about'
-import { site } from '../content/site'
+import { Copy } from '../components/Placeholder'
 import { Figure } from '../components/Figure'
 import { ContactLinks } from '../components/Contact'
 import { PageHeader } from '../components/PageHeader'
@@ -16,7 +16,6 @@ export default function About() {
 
       <div className={styles.layout}>
         <Reveal className={styles.portrait}>
-          {/* Above the fold on desktop, so it loads eagerly. */}
           <Figure
             image={about.portrait}
             priority
@@ -28,7 +27,7 @@ export default function About() {
           <Reveal className="prose">
             {about.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)} className={styles.paragraph}>
-                {paragraph}
+                <Copy>{paragraph}</Copy>
               </p>
             ))}
           </Reveal>
@@ -46,14 +45,27 @@ export default function About() {
         </div>
       </div>
 
-      {/* Contact lives here rather than on its own route — there is no form to
-          justify a page, just three links. */}
+      {about.tools?.length > 0 && (
+        <Reveal as="section" className={styles.tools} aria-labelledby="tools-heading">
+          <span className="eyebrow">Toolkit</span>
+          <h2 id="tools-heading" className={styles.toolsTitle}>
+            {about.toolsHeading}
+          </h2>
+          <dl className={styles.toolGroups}>
+            {about.tools.map((group) => (
+              <div key={group.label} className={styles.toolGroup}>
+                <dt className="eyebrow">{group.label}</dt>
+                <dd className={styles.toolItems}>{group.items.join(' · ')}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      )}
+
       <Reveal as="section" className={styles.contact} id="contact">
         <div className={styles.contactHead}>
           <span className="eyebrow">Contact</span>
-          <h2 className={styles.contactTitle}>
-            Say hello.
-          </h2>
+          <h2 className={styles.contactTitle}>Say hello.</h2>
           <p className={styles.contactNote}>
             The fastest way to reach me is email. I read everything, and I answer
             most things within a day or two.

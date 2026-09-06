@@ -75,6 +75,10 @@
   transition: color var(--dur-base) var(--ease);
 }
 
+.rowBlurb.placeholder {
+  color: var(--clay);
+}
+
 .rowArrow {
   justify-self: end;
   color: var(--ink-faint);
@@ -93,27 +97,6 @@
 .row:hover .rowArrow {
   color: var(--accent);
   transform: translateX(6px);
-}
-
-/* ---- Currently ------------------------------------------------------------ */
-
-.currently {
-  display: grid;
-  gap: var(--space-3);
-  padding-bottom: var(--section-y);
-}
-
-.currentlyText {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  letter-spacing: var(--tracking-tight);
-  color: var(--ink-soft);
-  max-width: 40ch;
-}
-
-.currentlyText strong {
-  color: var(--ink);
-  font-weight: 400;
 }
 
 @media (max-width: 780px) {

@@ -7,10 +7,8 @@ export const site = {
   name: 'Isabel Su',
   initials: 'IS',
 
-  // REVIEW: the home page opening line. Written to be quiet and specific rather
-  // than a pitch — it names three real, very different things you've built and
-  // lets the range do the talking. Overwrite freely; it's the most "you" sentence
-  // on the site.
+  // PLACEHOLDER: home opening blurb. Wording left as-is for Isabel to rewrite;
+  // the home page flags it visually so it cannot ship unnoticed.
   identity:
     'Computer science at Georgia Tech. I work on software that makes complicated things easier to use — sign language lessons, retrieval pipelines, audit checklists.',
 
@@ -43,17 +41,21 @@ export const site = {
 /**
  * The four entry points on the home page. `blurb` is the one-line description
  * under each; keep them short — they're read at a glance, not studied.
+ *
+ * `placeholder: true` flags the one-liner for rewrite without changing wording.
  */
 export const entryPoints = [
   {
     to: '/projects',
     label: 'Projects',
     blurb: 'iOS apps, valuation models, and the occasional 36-hour sprint.',
+    placeholder: true,
   },
   {
     to: '/work',
     label: 'Work',
     blurb: 'Corporate finance automation and AI research, in that order.',
+    placeholder: true,
   },
   {
     to: '/hobbies',
@@ -64,5 +66,6 @@ export const entryPoints = [
     to: '/about',
     label: 'About',
     blurb: 'The short version, plus how to reach me.',
+    placeholder: true,
   },
 ]

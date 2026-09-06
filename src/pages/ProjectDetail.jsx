@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { getProject, getProjectNeighbors } from '../content/projects'
+import { Copy } from '../components/Placeholder'
 import { PageHeader } from '../components/PageHeader'
 import { Figure } from '../components/Figure'
 import { Gallery } from '../components/Gallery'
@@ -39,7 +40,9 @@ export default function ProjectDetail() {
         {meta.map((item) => (
           <div key={item.label} className={styles.metaItem}>
             <dt className="eyebrow">{item.label}</dt>
-            <dd className={styles.metaValue}>{item.value}</dd>
+            <dd className={styles.metaValue}>
+              <Copy>{item.value}</Copy>
+            </dd>
           </div>
         ))}
       </Reveal>
@@ -61,16 +64,18 @@ export default function ProjectDetail() {
           <Section key={section.heading} title={section.heading} index={i + 1}>
             <div className="prose">
               {section.body?.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                <p key={paragraph.slice(0, 40)}>
+                  <Copy>{paragraph}</Copy>
+                </p>
               ))}
             </div>
 
             {section.points?.length > 0 && (
               <ul className={styles.points}>
                 {section.points.map((point) => (
-                  <li key={point.slice(0, 40)} className={styles.point}>
-                    {point}
-                  </li>
+                <li key={point.slice(0, 40)} className={styles.point}>
+                  <Copy>{point}</Copy>
+                </li>
                 ))}
               </ul>
             )}

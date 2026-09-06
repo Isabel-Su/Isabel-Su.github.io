@@ -17,6 +17,9 @@
  *   cover     { key, ratio, alt } — key resolves via src/lib/images.js
  *   sections  [{ heading, body: [paragraphs], points: [bullets] }]
  *   gallery   [{ key, ratio, alt, caption }] — screenshots, added later
+ *
+ * Detail pages follow: what it is → how it was built → challenges/decisions →
+ * what I took away. Strings starting with `[PLACEHOLDER` are flagged in the UI.
  */
 
 export const projects = [
@@ -26,11 +29,9 @@ export const projects = [
     tagline:
       'A computer-vision app that watches you sign, built to widen who gets to learn ASL.',
     context: 'GT iOS Club',
-    role: 'Subteam Lead — 7 engineers',
+    role: 'Senior Developer',
     period: 'Jan – Apr 2026',
-    // REVIEW: stack is inferred from "iPhone app" — you didn't specify the CV
-    // framework. Correct or trim this list.
-    stack: ['Swift', 'SwiftUI', 'Computer Vision'],
+    stack: ['Swift', 'SwiftUI', 'Vision'],
     award:
       'First app in GT iOS Club history to sweep all three semi-annual awards — Popular App, Best Design, and Best App Overall.',
     cover: {
@@ -40,19 +41,17 @@ export const projects = [
     },
     sections: [
       {
-        heading: 'The problem',
+        heading: 'What it is',
         body: [
           'American Sign Language is usually learned in a classroom or with a tutor, which puts it out of reach for plenty of people who genuinely want to pick it up. The apps that try to fill that gap mostly quiz recognition — can you identify this sign — which is a different skill from being able to produce one yourself.',
-          // REVIEW: this sentence extrapolates from "computer-vision-based" to
-          // describe camera-based feedback. Accurate to the concept, but confirm
-          // it matches what the app actually does.
           'Talking Fingers was built around the camera instead, so the learning loop closes on whether your hands are actually doing the right thing.',
         ],
       },
       {
-        heading: 'What I built',
+        heading: 'How it was built',
         body: [
-          'I led a 7-person subteam inside a 30+ person project, owning the foundational functionality the rest of the app was assembled on top of. Three pieces of that were mine end to end.',
+          'An iPhone app in Swift and SwiftUI. Sign production is checked through the camera using Apple’s Vision framework, rather than a generic computer-vision stack.',
+          'I owned foundational pieces of the app the rest of the product was assembled on top of. Three of those were mine end to end.',
         ],
         points: [
           'Implemented multiple spaced-repetition scheduling algorithms rather than committing to one, so review intervals could be tuned against long-term retention instead of how well someone happened to do in a single session.',
@@ -61,14 +60,19 @@ export const projects = [
         ],
       },
       {
-        heading: 'Outcome',
+        heading: 'Challenges & decisions',
         body: [
-          'Talking Fingers became the first app in GT iOS Club history to sweep all three semi-annual awards: Popular App, Best Design, and Best App Overall. The design award is the one I care about most, since the whole argument of the project was that an accessibility tool has to be pleasant enough that people keep opening it.',
+          '[PLACEHOLDER: What was hard, which tradeoffs you made, and why. Specifics — Vision, scheduling, search, the learning flow — not generalities.]',
+        ],
+      },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What this project changed about how you build, or what you would do differently. The design-award argument (an accessibility tool has to be pleasant enough that people keep opening it) can live here if it still feels true.]',
         ],
       },
     ],
     gallery: [
-      // Drop screenshots into src/assets/images/projects/ and they appear here.
       { key: 'projects/talking-fingers-01', ratio: '9 / 19.5', alt: 'Lesson view' },
       { key: 'projects/talking-fingers-02', ratio: '9 / 19.5', alt: 'Practice view' },
       { key: 'projects/talking-fingers-03', ratio: '9 / 19.5', alt: 'Search view' },
@@ -79,11 +83,11 @@ export const projects = [
     slug: 'skillswap',
     title: 'SkillSwap',
     tagline:
-      'The data layer behind a skill-tracking app — schema, pipeline, and the charts that came out of it.',
+      '[PLACEHOLDER: SkillSwap is a skill-tracking app — lessons, quizzes, and a picture of your own progress over time.]',
     context: 'GT iOS Club',
-    role: 'Data & Analytics — 25+ person team',
+    role: 'Junior Developer',
     period: 'Aug – Nov 2025',
-    stack: ['Swift', 'SwiftUI', 'Document DB'],
+    stack: ['Swift', 'SwiftUI', 'Firebase'],
     cover: {
       key: 'projects/skillswap-cover',
       ratio: '4 / 3',
@@ -91,34 +95,34 @@ export const projects = [
     },
     sections: [
       {
-        heading: 'The problem',
+        heading: 'What it is',
         body: [
-          // REVIEW: framing inferred from what you described building (filtering,
-          // analytics, lesson/quiz data). Adjust if SkillSwap's premise differs.
-          'On a 25+ person team the visible work is screens, but the thing that decides whether those screens can exist is the shape of the data underneath them. SkillSwap needed to filter content dynamically and show people a real picture of their own progress — neither of which works if the schema can only answer the questions you thought of on day one.',
+          'SkillSwap is a skill-tracking app: people work through lessons, take quizzes, and get a real picture of how they are improving. Content can be filtered dynamically, and progress is something you can actually look at rather than a score from a single session.',
         ],
       },
       {
-        heading: 'What I built',
+        heading: 'How it was built',
         body: [
-          'I designed and implemented the document-based database schema and the custom data structures sitting on top of it, in Swift and SwiftUI, specifically so dynamic filtering and analytics would still hold up as the content set grew.',
+          'An iPhone app in Swift and SwiftUI, with Firebase as the database. The screens only work if the data underneath them can answer questions you did not think of on day one — filtering, analytics, a history of lessons and quizzes that turns into a trend.',
         ],
         points: [
-          'A document-based schema plus custom data structures built for dynamic filtering and analytics at scale.',
+          'A Firebase schema plus custom data structures built for dynamic filtering and analytics at scale.',
           'A data analysis pipeline that tracks skill growth from cumulative lesson and quiz data, turning a scattered history of activity into a trend a person can actually read.',
           'Interactive charts and filters on top of that pipeline, so progress is explorable rather than a single static number.',
         ],
       },
       {
-        heading: 'Outcome',
+        heading: 'Challenges & decisions',
         body: [
-          'The analytics work stopped being a side feature and shaped core product functionality — it was central to the final judging demo, which is the honest test of whether a data layer earned its keep.',
+          '[PLACEHOLDER: What was hard about the Firebase schema, the pipeline, or the charts. Tradeoffs you made as the content set grew.]',
         ],
       },
-    ],
-    gallery: [
-      { key: 'projects/skillswap-01', ratio: '9 / 19.5', alt: 'Progress charts' },
-      { key: 'projects/skillswap-02', ratio: '9 / 19.5', alt: 'Filtered browse view' },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What you learned building the data layer. The judging-demo moment (analytics shaping core product functionality) can live here if you want it.]',
+        ],
+      },
     ],
   },
 
@@ -127,9 +131,9 @@ export const projects = [
     title: 'GridX',
     tagline: 'What if an NFL roster were a portfolio? A valuation model that prices players like assets.',
     context: 'HackGT',
-    role: 'Built with 3 teammates',
+    role: 'Contributor, team of 4',
     period: 'Sep 2025',
-    stack: ['React', 'Data Visualization'],
+    stack: ['React', 'Pandas', 'NumPy'],
     award: 'Functional end-to-end prototype in 36 hours.',
     cover: {
       key: 'projects/gridx-cover',
@@ -138,27 +142,156 @@ export const projects = [
     },
     sections: [
       {
-        heading: 'The problem',
+        heading: 'What it is',
         body: [
           'Arguments about which NFL players are worth what are usually qualitative — vibes, highlights, and a lot of confident opinions. GridX started from a different question: if you treated a player as a tradeable asset with an actual price, what would the price be, and what would a whole team be worth?',
         ],
       },
       {
-        heading: 'What we built',
+        heading: 'How it was built',
         body: [
-          'A formula-driven valuation model that scores player and team value directly from performance statistics, and uses those scores to drive rankings. On top of the model, a React front end visualizes team valuations and performance trends so the numbers are explorable instead of buried in a table.',
+          'A formula-driven valuation model, scored in Pandas and NumPy directly from performance statistics, that uses those scores to drive rankings. On top of the model, a React front end visualizes team valuations and performance trends so the numbers are explorable instead of buried in a table.',
+          'Four of us took it from an idea to a working end-to-end prototype in 36 hours — model, data, and interface, all connected. Every scoring decision had to be simple enough to justify out loud and fast enough to compute live.',
         ],
       },
       {
-        heading: 'Outcome',
+        heading: 'Challenges & decisions',
         body: [
-          'Four of us took it from an idea to a working end-to-end prototype in 36 hours — model, data, and interface, all connected. The constraint was the interesting part: every scoring decision had to be simple enough to justify out loud and fast enough to compute live.',
+          '[PLACEHOLDER: What you personally built in the 36 hours, and which modelling or interface tradeoffs the time constraint forced.]',
+        ],
+      },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What a 36-hour prototype taught you that a longer project would not have.]',
         ],
       },
     ],
-    gallery: [
-      { key: 'projects/gridx-01', ratio: '16 / 10', alt: 'Valuation dashboard' },
-      { key: 'projects/gridx-02', ratio: '16 / 10', alt: 'Performance trends' },
+  },
+
+  {
+    slug: 'wave-simulator',
+    title: 'Wave Simulator',
+    tagline:
+      '[PLACEHOLDER: A NumPy simulation of interference, reflection, and superposition.]',
+    context: '[PLACEHOLDER: class / independent / other?]',
+    role: '[PLACEHOLDER: your role]',
+    period: 'May – Jun 2025',
+    stack: ['Python', 'NumPy'],
+    cover: {
+      key: 'projects/wave-simulator-cover',
+      ratio: '16 / 10',
+      alt: 'Wave Simulator visualization',
+    },
+    sections: [
+      {
+        heading: 'What it is',
+        body: [
+          'A wave simulation that models interference, reflection, and superposition — the physics ideas that are easy to write down and harder to see.',
+        ],
+      },
+      {
+        heading: 'How it was built',
+        body: [
+          'Written in Python with NumPy doing the wave math. Visualization tools render the simulation as it runs, so interference patterns and reflections can be watched rather than inferred from numbers.',
+        ],
+      },
+      {
+        heading: 'Challenges & decisions',
+        body: [
+          '[PLACEHOLDER: What was actually hard — numerical stability, boundary conditions, making the visualization honest, or something else.]',
+        ],
+      },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What building this changed about how you think about simulation, visualization, or physics code.]',
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: 'tennis-service-classifier',
+    title: 'Classifier for Service Choice in Tennis',
+    tagline:
+      '[PLACEHOLDER: A neural net that predicts the better coin-toss call in a tennis match.]',
+    context: '[PLACEHOLDER: class / independent / other?]',
+    role: '[PLACEHOLDER: your role]',
+    period: 'Jun – Aug 2024',
+    stack: ['Python', 'NumPy', 'Pandas', 'TensorFlow'],
+    cover: {
+      key: 'projects/tennis-classifier-cover',
+      ratio: '16 / 10',
+      alt: 'Tennis service-choice classifier',
+    },
+    sections: [
+      {
+        heading: 'What it is',
+        body: [
+          'A neural network classifier that predicts the better coin-toss decision in a tennis match — serve or receive — given what you know about the players and the situation.',
+        ],
+      },
+      {
+        heading: 'How it was built',
+        body: [
+          'Built in Google Colab with NumPy, Pandas, and TensorFlow. Features came from serve speed, player ranking, and gender, with a default ranking fill-in when ranking data was missing.',
+        ],
+      },
+      {
+        heading: 'Challenges & decisions',
+        body: [
+          '[PLACEHOLDER: Feature choices, missing-data handling, how you evaluated the model, what did not work.]',
+        ],
+      },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What this taught you about classifiers, sports data, or working in a notebook.]',
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: 'ez-eats',
+    title: 'EZ-Eats Meal Planner',
+    tagline:
+      '[PLACEHOLDER: A full-stack meal planner with calorie targets and dietary filters.]',
+    context: '[PLACEHOLDER: class / independent / other?]',
+    role: '[PLACEHOLDER: your role]',
+    period: 'May – Jun 2023',
+    stack: ['Java', 'Spring Boot', 'MongoDB', 'HTML/CSS', 'Bootstrap'],
+    cover: {
+      key: 'projects/ez-eats-cover',
+      ratio: '16 / 10',
+      alt: 'EZ-Eats meal planner',
+    },
+    sections: [
+      {
+        heading: 'What it is',
+        body: [
+          'A full-stack web app for planning meals against calorie targets and dietary constraints.',
+        ],
+      },
+      {
+        heading: 'How it was built',
+        body: [
+          'Java and Spring Boot on the server, MongoDB for persistence, HTML/CSS and Bootstrap for a responsive UI. Controllers and repositories sit between the meal-plan algorithms — calorie totals, dietary filters — and the browser. Service logic was tested for reliability.',
+        ],
+      },
+      {
+        heading: 'Challenges & decisions',
+        body: [
+          '[PLACEHOLDER: What was hard about the planner logic, the data model, or wiring the UI to the service layer.]',
+        ],
+      },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What a first full-stack app taught you that later projects built on.]',
+        ],
+      },
     ],
   },
 ]

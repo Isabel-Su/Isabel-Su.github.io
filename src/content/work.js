@@ -2,16 +2,16 @@
  * Work experience.
  *
  * Entries sort themselves — `current` roles float to the top, then everything
- * else by end date descending. So adding the Discrete Math TA role is appending
- * the object below and nothing else; it will slot into the right place on its own.
+ * else by end date descending. Adding a role is appending the object; it slots
+ * into the right place on its own.
  *
  *   {
  *     id: 'gt-discrete-math',
  *     org: 'Georgia Institute of Technology',
  *     role: 'Undergraduate Teaching Assistant, Discrete Mathematics',
  *     location: 'Atlanta, GA',
- *     dates: 'Jan 2027 – Present',
- *     range: { start: '2027-01', end: null },
+ *     dates: 'Aug 2026 – Present',
+ *     range: { start: '2026-08', end: null },
  *     current: true,
  *     kind: 'teaching',
  *     summary: '…one sentence…',
@@ -19,6 +19,7 @@
  *   }
  *
  * `kind` drives the small label on the card: 'industry' | 'research' | 'teaching'.
+ * Strings starting with `[PLACEHOLDER` are flagged in the UI.
  */
 
 export const kindLabels = {
@@ -27,12 +28,48 @@ export const kindLabels = {
   teaching: 'Teaching',
 }
 
-// REVIEW: the framing line at the top of the Work page. It exists to make the
-// finance/AI split read as intentional range rather than a scattered résumé.
+export const workTitle = '[PLACEHOLDER: Work page headline]'
+export const workLede = '[PLACEHOLDER: One-liner under the headline]'
+
 export const workIntro =
-  'One summer on a corporate audit floor in Newark, one year in an AI lab in Atlanta. Different vocabularies, same instinct — find the manual, error-prone process everyone has quietly accepted, and turn it into something that runs on its own.'
+  '[PLACEHOLDER: Intro blurb for the Work page — the overall narrative that frames the experience list below. Don’t ship this sentence.]'
 
 export const work = [
+  {
+    id: 'gt-discrete-math',
+    org: 'Georgia Institute of Technology',
+    role: 'Discrete Math TA',
+    location: 'Atlanta, GA',
+    dates: 'Aug 2026 – Present',
+    range: { start: '2026-08', end: null },
+    current: true,
+    kind: 'teaching',
+    summary:
+      '[PLACEHOLDER: One sentence on what this role is day to day.]',
+    highlights: [
+      '[PLACEHOLDER: Grading — what you grade, and what “done well” looks like.]',
+      '[PLACEHOLDER: Office hours — who shows up, what you actually do there.]',
+      '[PLACEHOLDER: Recitations / help sessions — format, and your part in them.]',
+    ],
+  },
+
+  {
+    id: 'ai-safety-initiative',
+    org: 'AI Safety Initiative',
+    role: 'Technical Safety Fellow',
+    location: 'Atlanta, GA',
+    dates: 'Feb 2026 – Present',
+    range: { start: '2026-02', end: null },
+    current: true,
+    kind: 'research',
+    summary:
+      'Reading current safety research and pressure-testing it in structured debate.',
+    highlights: [
+      'Analyzing 3–4 AI safety papers weekly spanning RLHF, alignment, unlearning, adversarial robustness, and model control, developing broad technical literacy across active safety research.',
+      'Engaging in structured debate sessions critically evaluating risk frameworks, misalignment failure modes, and jailbreaking vulnerabilities across modern LLM architectures.',
+    ],
+  },
+
   {
     id: 'prudential',
     org: 'Prudential Financial',
@@ -68,7 +105,7 @@ export const work = [
   },
 ]
 
-/** Current roles first, then most recently ended. */
+/** Current roles first (open-ended dates), then most recently ended. */
 export const sortedWork = [...work].sort((a, b) => {
   const aEnd = a.range.end ?? '9999-99'
   const bEnd = b.range.end ?? '9999-99'

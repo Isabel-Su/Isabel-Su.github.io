@@ -1,8 +1,8 @@
 import { m, useReducedMotion } from 'framer-motion'
 import { entryPoints, site } from '../content/site'
-import { sortedWork } from '../content/work'
+import { PlaceholderMark } from '../components/Placeholder'
 import { PrefetchLink } from '../components/PrefetchLink'
-import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
+import { Stagger, StaggerItem } from '../motion/Reveal'
 import { fadeUp, fadeUpTight, stagger, still } from '../motion/tokens'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './Home.module.css'
@@ -10,7 +10,6 @@ import styles from './Home.module.css'
 export default function Home() {
   useDocumentTitle()
   const reduced = useReducedMotion()
-  const current = sortedWork.find((role) => role.current)
 
   return (
     <>
@@ -33,9 +32,11 @@ export default function Home() {
 
         <m.hr className={styles.rule} variants={reduced ? still : fadeUpTight} />
 
-        <m.p className={styles.statement} variants={reduced ? still : fadeUp}>
-          {site.identity}
-        </m.p>
+        <m.div variants={reduced ? still : fadeUp}>
+          <PlaceholderMark note="PLACEHOLDER — rewrite this blurb">
+            <p className={styles.statement}>{site.identity}</p>
+          </PlaceholderMark>
+        </m.div>
       </m.section>
 
       {/* The real navigation of the site: four large rows rather than a menu. */}
@@ -45,7 +46,9 @@ export default function Home() {
             <PrefetchLink to={entry.to} className={styles.row}>
               <span className={styles.rowIndex}>{String(i + 1).padStart(2, '0')}</span>
               <span className={styles.rowLabel}>{entry.label}</span>
-              <span className={styles.rowBlurb}>{entry.blurb}</span>
+              <span className={`${styles.rowBlurb} ${entry.placeholder ? 'placeholder' : ''}`}>
+                {entry.placeholder ? `[PLACEHOLDER] ${entry.blurb}` : entry.blurb}
+              </span>
               <span className={styles.rowArrow} aria-hidden="true">
                 &#8594;
               </span>
@@ -53,15 +56,6 @@ export default function Home() {
           </StaggerItem>
         ))}
       </Stagger>
-
-      {current && (
-        <Reveal className={`container ${styles.currently}`}>
-          <span className="eyebrow">Currently</span>
-          <p className={styles.currentlyText}>
-            {current.role} at <strong>{current.org}</strong>, {current.location}.
-          </p>
-        </Reveal>
-      )}
     </>
   )
 }
