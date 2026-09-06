@@ -59,14 +59,7 @@ export default function About() {
             most things within a day or two.
           </p>
         </div>
-
         <ContactLinks />
-      </Reveal>
-
-      <Reveal className={styles.signoff}>
-        <p className="faint">
-          {site.education.degree}, {site.education.school}.
-        </p>
       </Reveal>
     </div>
   )

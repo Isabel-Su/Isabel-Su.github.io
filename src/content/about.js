@@ -22,9 +22,7 @@ export const about = {
 
   // Small factual lines beside the photo. Add, remove, or reorder freely.
   facts: [
-    { label: 'Studying', value: 'B.S. Computer Science, Georgia Tech' },
-    { label: 'Class of', value: '2028' },
-    { label: 'GPA', value: '4.0' },
+    { label: 'Studying', value: 'Computer Science, Mathematics' },
     { label: 'Based in', value: 'Atlanta, GA' }, // REVIEW: confirm
   ],
 }
