@@ -188,3 +188,28 @@ h4 {
   color: var(--clay);
   margin-bottom: var(--space-2);
 }
+
+/* Home hero marker. Lives here (not the page module) so the wipe is a real
+   CSS animation on first paint — nested Framer variants never see it. */
+.home-mark-fill {
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: home-mark-swipe 0.9s var(--ease) both;
+  animation-delay: var(--home-mark-delay, 0s);
+}
+
+@keyframes home-mark-swipe {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-mark-fill {
+    animation: none;
+    transform: none;
+  }
+}

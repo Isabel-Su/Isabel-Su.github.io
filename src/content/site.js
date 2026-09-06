@@ -15,10 +15,10 @@ export const site = {
     alt: '',
   },
 
-  // PLACEHOLDER: home opening blurb. Wording left as-is for Isabel to rewrite;
-  // the home page flags it visually so it cannot ship unnoticed.
+  // Home opening blurb. Deliberately written without naming projects or roles
+  // so it does not go stale as the work behind it changes.
   identity:
-    'Computer science at Georgia Tech. I work on software that makes complicated things easier to use — sign language lessons, retrieval pipelines, audit checklists.',
+    'I’m drawn to problems where the hard part is the thinking. I love working with other passionate people and building things that hold up over time, whether that means a polished app or a well-documented codebase.',
 
   education: {
     school: 'Georgia Institute of Technology',
@@ -50,30 +50,28 @@ export const site = {
  * The four entry points on the home page. `blurb` is the one-line description
  * under each; keep them short — they're read at a glance, not studied.
  *
- * `placeholder: true` flags the one-liner for rewrite without changing wording.
+ * These describe what each page is rather than what is currently on it, so
+ * adding a project or a role does not mean rewriting the home page.
  */
 export const entryPoints = [
   {
     to: '/projects',
     label: 'Projects',
-    blurb: 'iOS apps, valuation models, and the occasional 36-hour sprint.',
-    placeholder: true,
+    blurb: 'The work I pick up on my own, start to finish.',
   },
   {
     to: '/work',
     label: 'Work',
-    blurb: 'Corporate finance automation and AI research, in that order.',
-    placeholder: true,
+    blurb: 'Research, teaching, and industry — where I’ve been paid to learn.',
   },
   {
     to: '/hobbies',
     label: 'Hobbies',
-    blurb: 'Photographs, folded paper, and a lot of miles.',
+    blurb: 'What I’m doing when I’m not at a keyboard.',
   },
   {
     to: '/about',
     label: 'About',
-    blurb: 'The short version, plus how to reach me.',
-    placeholder: true,
+    blurb: 'My story, plus how to reach me.',
   },
 ]

@@ -4,6 +4,7 @@ import { Copy } from '../components/Placeholder'
 import { PageHeader } from '../components/PageHeader'
 import { Figure } from '../components/Figure'
 import { Gallery } from '../components/Gallery'
+import { DemoVideo } from '../components/DemoVideo'
 import { Section } from '../components/Section'
 import { PrevNext } from '../components/PrevNext'
 import { PrefetchLink } from '../components/PrefetchLink'
@@ -94,6 +95,19 @@ export default function ProjectDetail() {
               variant="row"
               sizes="(max-width: 640px) 100vw, 30vw"
             />
+          </div>
+        </section>
+      )}
+
+      {project.demo && (
+        <section className={styles.gallery}>
+          <Reveal>
+            <span className="eyebrow">
+              {(typeof project.demo === 'object' && project.demo.title) || 'Demo'}
+            </span>
+          </Reveal>
+          <div className={styles.galleryGrid}>
+            <DemoVideo demo={project.demo} />
           </div>
         </section>
       )}

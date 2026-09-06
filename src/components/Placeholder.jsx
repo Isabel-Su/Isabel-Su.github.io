@@ -12,7 +12,8 @@ export function Copy({ children, className = '' }) {
 
 /**
  * Flags existing wording that should be rewritten, without changing the words.
- * Used on the home blurb and TOC one-liners.
+ * For copy that reads as finished but is not — a `[PLACEHOLDER` marker would
+ * be wrong there, so `Copy` cannot catch it. No callers at the moment.
  */
 export function PlaceholderMark({ children, note = 'PLACEHOLDER — rewrite' }) {
   return (

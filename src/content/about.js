@@ -14,7 +14,7 @@ export const about = {
   heading: 'A quick introduction.',
 
   paragraphs: [
-    '[PLACEHOLDER: Replace this with a few genuine sentences about yourself. What you are studying and where, what kind of problems you gravitate toward, and one thing that is true about you that would not show up on a résumé. Shorter is better; three or four sentences is plenty.]',
+    "I study computer science and math at Georgia Tech. I enjoy solving challenging problems by collaborating with other passionate people. I care about keeping my work polished and maintainable, rather than rushing to ship it. Outside of class I'm usually behind a camera, on a court, or folding paper into shapes it doesn't want to hold. I grew up in New Jersey and still consider the NYC area home.",
   ],
 
   facts: [

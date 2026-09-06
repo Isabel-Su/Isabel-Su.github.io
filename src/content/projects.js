@@ -15,14 +15,65 @@
  *   stack     technologies — rendered as small labels
  *   award     optional single standout line, rendered with emphasis
  *   cover     { key, ratio, alt } — key resolves via src/lib/images.js
+ *   demo      optional trailing video, same slot as gallery. Omit it and the
+ *             page has no demo. `true` is a labelled placeholder; or
+ *             `{ src, title?, caption?, ratio? }` for a YouTube/Vimeo URL or file.
  *   sections  [{ heading, body: [paragraphs], points: [bullets] }]
- *   gallery   [{ key, ratio, alt, caption }] — screenshots, added later
+ *   gallery   optional screenshots. Omit it and the page has no Screens block.
  *
- * Detail pages follow: what it is → how it was built → challenges/decisions →
- * what I took away. Strings starting with `[PLACEHOLDER` are flagged in the UI.
+ * Detail pages share one template: what it is → how it was built →
+ * challenges/decisions → what I took away, then optional Screens and/or Demo.
+ * Strings starting with `[PLACEHOLDER` are flagged in the UI.
  */
 
 export const projects = [
+  {
+    slug: 'gt-movies-store',
+    title: 'GT Movies Store',
+    tagline: 'A Django movies store — browse, pick a film, and follow the path a customer would actually take.',
+    context: 'CS 2340: Intro to Software Engineering',
+    role: 'Independent',
+    period: 'Sep 2026',
+    stack: ['Python', 'Django', 'Bootstrap'],
+    cover: {
+      key: 'projects/gt-movies-store-cover',
+      ratio: '16 / 10',
+      alt: 'GT Movies Store',
+    },
+    demo: {
+      caption:
+        '[PLACEHOLDER: A walkthrough of the store — listing, detail, and the rest of the required user stories.]',
+    },
+    sections: [
+      {
+        heading: 'What it is',
+        body: [
+          'A functioning movies store website: accounts, a catalog, and the screens a customer moves through to find a film and complete the purchase.',
+          '[PLACEHOLDER: Elaborate on the web app. Walk through the screens and features, and how each one answers a required user story.]',
+        ],
+      },
+      {
+        heading: 'How it was built',
+        body: [
+          'Python and Django on the server, Bootstrap for a responsive UI. Models, views, and templates sit behind the storefront so listing, detail, cart, and checkout stay in one app.',
+          '[PLACEHOLDER: Which parts of the stack you owned, and how models / views / templates connect to those user stories.]',
+        ],
+      },
+      {
+        heading: 'Challenges & decisions',
+        body: [
+          '[PLACEHOLDER: How you worked on this. Any methodology or approach, how you navigated questions and doubts, and what was hard about the user stories, models, or templates.]',
+        ],
+      },
+      {
+        heading: 'What I took away',
+        body: [
+          '[PLACEHOLDER: What building the store taught you, or what you would do differently.]',
+        ],
+      },
+    ],
+  },
+
   {
     slug: 'talking-fingers',
     title: 'Talking Fingers',
@@ -83,7 +134,7 @@ export const projects = [
     slug: 'skillswap',
     title: 'SkillSwap',
     tagline:
-      '[PLACEHOLDER: SkillSwap is a skill-tracking app — lessons, quizzes, and a picture of your own progress over time.]',
+      'A skill-trading app with tracking for lessons, quizzes, and a picture of your own progress over time.',
     context: 'GT iOS Club',
     role: 'Junior Developer',
     period: 'Aug – Nov 2025',
@@ -173,9 +224,9 @@ export const projects = [
     slug: 'wave-simulator',
     title: 'Wave Simulator',
     tagline:
-      '[PLACEHOLDER: A NumPy simulation of interference, reflection, and superposition.]',
-    context: '[PLACEHOLDER: class / independent / other?]',
-    role: '[PLACEHOLDER: your role]',
+      'A NumPy simulation of interference, reflection, and superposition.',
+    context: 'Independent',
+    role: 'Independent',
     period: 'May – Jun 2025',
     stack: ['Python', 'NumPy'],
     cover: {
@@ -215,9 +266,9 @@ export const projects = [
     slug: 'tennis-service-classifier',
     title: 'Classifier for Service Choice in Tennis',
     tagline:
-      '[PLACEHOLDER: A neural net that predicts the better coin-toss call in a tennis match.]',
-    context: '[PLACEHOLDER: class / independent / other?]',
-    role: '[PLACEHOLDER: your role]',
+      'A neural net that predicts the better coin-toss call in a tennis match.',
+    context: 'Independent',
+    role: 'Independent',
     period: 'Jun – Aug 2024',
     stack: ['Python', 'NumPy', 'Pandas', 'TensorFlow'],
     cover: {
@@ -257,9 +308,9 @@ export const projects = [
     slug: 'ez-eats',
     title: 'EZ-Eats Meal Planner',
     tagline:
-      '[PLACEHOLDER: A full-stack meal planner with calorie targets and dietary filters.]',
-    context: '[PLACEHOLDER: class / independent / other?]',
-    role: '[PLACEHOLDER: your role]',
+      'A full-stack meal planner with calorie targets and dietary filters.',
+    context: 'AP Computer Science A Class',
+    role: 'Contributor, team of 3',
     period: 'May – Jun 2023',
     stack: ['Java', 'Spring Boot', 'MongoDB', 'HTML/CSS', 'Bootstrap'],
     cover: {

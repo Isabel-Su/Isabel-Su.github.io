@@ -24,7 +24,16 @@ import { createElement } from 'react'
  * Avoid apostrophes in expectations — React escapes them to &#x27;.
  */
 const ROUTES = [
-  { path: '/', expect: ['Isabel Su', 'sign language lessons', 'Hobbies', 'PLACEHOLDER', 'home/banner'] },
+  {
+    path: '/',
+    expect: [
+      'Isabel Su',
+      'hard part is the thinking',
+      'start to finish',
+      'Hobbies',
+      'home/banner',
+    ],
+  },
   {
     path: '/projects',
     expect: [
@@ -34,6 +43,7 @@ const ROUTES = [
       'Wave Simulator',
       'Classifier for Service Choice in Tennis',
       'EZ-Eats Meal Planner',
+      'GT Movies Store',
     ],
   },
   {
@@ -59,6 +69,20 @@ const ROUTES = [
   {
     path: '/projects/ez-eats',
     expect: ['EZ-Eats', 'Spring Boot', 'MongoDB'],
+  },
+  {
+    path: '/projects/gt-movies-store',
+    expect: [
+      'GT Movies Store',
+      'Django',
+      'Bootstrap',
+      'Placeholder video',
+      'user story',
+      'CS 2340',
+      'Sep 2026',
+      'Independent',
+      'Challenges',
+    ],
   },
   {
     path: '/work',

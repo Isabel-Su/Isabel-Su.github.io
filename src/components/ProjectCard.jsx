@@ -9,6 +9,7 @@ export function ProjectCard({ project, priority = false, sizes }) {
       <div className={styles.media}>
         <Figure
           image={project.cover}
+          fill
           priority={priority}
           sizes={sizes}
           showCaption={false}

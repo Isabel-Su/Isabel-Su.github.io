@@ -17,6 +17,7 @@
 .value {
   position: relative;
   display: inline-block;
+  justify-self: start;
   font-family: var(--font-display);
   font-size: var(--text-xl);
   letter-spacing: var(--tracking-tight);
