@@ -1,5 +1,6 @@
 .page {
-  /* Cancel the footer’s section gap so the last entry sits against it. */
+  /* Pull the footer up by its own margin so the last card’s padding — not an
+     extra section gap — is what sits above the footer rule. */
   margin-bottom: calc(-1 * var(--section-y));
 }
 
@@ -29,7 +30,7 @@
 
 .entry:last-child {
   border-bottom: 0;
-  padding-bottom: 0;
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
 .entryInner {

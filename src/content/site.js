@@ -7,6 +7,14 @@ export const site = {
   name: 'Isabel Su',
   initials: 'IS',
 
+  // Drop a file at src/assets/images/home/banner-<width>.jpg (or run
+  // `npm run images` from assets-raw/home/banner.jpg). Until then the home
+  // hero shows a labelled placeholder behind the name.
+  homeBanner: {
+    key: 'home/banner',
+    alt: '',
+  },
+
   // PLACEHOLDER: home opening blurb. Wording left as-is for Isabel to rewrite;
   // the home page flags it visually so it cannot ship unnoticed.
   identity:

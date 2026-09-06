@@ -24,7 +24,7 @@ import { createElement } from 'react'
  * Avoid apostrophes in expectations — React escapes them to &#x27;.
  */
 const ROUTES = [
-  { path: '/', expect: ['Isabel Su', 'sign language lessons', 'Hobbies', 'PLACEHOLDER'] },
+  { path: '/', expect: ['Isabel Su', 'sign language lessons', 'Hobbies', 'PLACEHOLDER', 'home/banner'] },
   {
     path: '/projects',
     expect: [

@@ -28,6 +28,24 @@
   opacity: 1;
 }
 
+/* Used when the frame is stretched by a parent (home hero banner) instead of
+   reserving height via aspect-ratio. */
+.fill {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.fill .frame {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+}
+
 /* ---- Empty slot ----------------------------------------------------------- */
 
 .placeholder {

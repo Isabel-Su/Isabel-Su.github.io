@@ -1,5 +1,6 @@
 import { m, useReducedMotion } from 'framer-motion'
 import { entryPoints, site } from '../content/site'
+import { Figure } from '../components/Figure'
 import { PlaceholderMark } from '../components/Placeholder'
 import { PrefetchLink } from '../components/PrefetchLink'
 import { Stagger, StaggerItem } from '../motion/Reveal'
@@ -13,33 +14,44 @@ export default function Home() {
 
   return (
     <>
-      {/* The opening screen. Content sits at the bottom of the first viewport —
-          the empty space above the name is doing as much work as the name. */}
+      {/* Opening screen. The banner fills from the top of the page down to the
+          edge under the name; the blurb sits on paper below that. */}
       <m.section
-        className={`container ${styles.hero}`}
+        className={styles.hero}
         variants={reduced ? still : stagger}
         initial="hidden"
         animate="visible"
       >
-        <m.p className={`eyebrow ${styles.eyebrow}`} variants={reduced ? still : fadeUpTight}>
-          {site.education.degree} &middot; {site.education.schoolShort} &middot; Class of{' '}
-          {site.education.gradYear}
-        </m.p>
+        <div className={styles.bannerPanel}>
+          <div className={styles.bannerMedia} aria-hidden="true">
+            <Figure
+              image={site.homeBanner}
+              fill
+              priority
+              showCaption={false}
+              sizes="100vw"
+            />
+          </div>
 
-        <m.h1 className={`display ${styles.name}`} variants={reduced ? still : fadeUp}>
-          {site.name}
-        </m.h1>
+          <div className={`container ${styles.bannerCopy}`}>
+            <m.p className={`eyebrow ${styles.eyebrow}`} variants={reduced ? still : fadeUpTight}>
+              {site.education.degree} &middot; {site.education.schoolShort} &middot; Class of{' '}
+              {site.education.gradYear}
+            </m.p>
 
-        <m.hr className={styles.rule} variants={reduced ? still : fadeUpTight} />
+            <m.h1 className={`display ${styles.name}`} variants={reduced ? still : fadeUp}>
+              {site.name}
+            </m.h1>
+          </div>
+        </div>
 
-        <m.div variants={reduced ? still : fadeUp}>
+        <m.div className={`container ${styles.statementWrap}`} variants={reduced ? still : fadeUp}>
           <PlaceholderMark note="PLACEHOLDER — rewrite this blurb">
             <p className={styles.statement}>{site.identity}</p>
           </PlaceholderMark>
         </m.div>
       </m.section>
 
-      {/* The real navigation of the site: four large rows rather than a menu. */}
       <Stagger as="nav" className={`container ${styles.index}`} aria-label="Sections">
         {entryPoints.map((entry, i) => (
           <StaggerItem key={entry.to}>

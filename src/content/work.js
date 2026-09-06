@@ -58,9 +58,9 @@ export const work = [
     org: 'AI Safety Initiative',
     role: 'Technical Safety Fellow',
     location: 'Atlanta, GA',
-    dates: 'Feb 2026 – Present',
-    range: { start: '2026-02', end: null },
-    current: true,
+    dates: 'Feb – May 2026',
+    range: { start: '2026-02', end: '2026-05' },
+    current: false,
     kind: 'research',
     summary:
       'Reading current safety research and pressure-testing it in structured debate.',
