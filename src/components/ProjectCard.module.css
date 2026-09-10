@@ -3,8 +3,11 @@
 }
 
 .media {
+  position: relative;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 2px;
+  background: var(--paper-sunk);
 }
 
 /* Slow, small scale on the image only. The frame clips it, so nothing around it

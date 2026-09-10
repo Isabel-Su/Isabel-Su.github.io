@@ -43,7 +43,6 @@ export function Footer() {
         <span className="faint">
           &copy; {new Date().getFullYear()} {site.name}
         </span>
-        <span className="faint">Built with React and a lot of whitespace.</span>
       </div>
     </footer>
   )

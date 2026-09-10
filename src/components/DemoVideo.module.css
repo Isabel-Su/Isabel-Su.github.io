@@ -2,9 +2,6 @@
   margin: 0;
 }
 
-/* The frame holds the reserved space. aspect-ratio is set inline from the
-   image's declared ratio, so the box exists at its final size before the
-   network is touched — zero cumulative layout shift. */
 .frame {
   position: relative;
   width: 100%;
@@ -13,40 +10,13 @@
   border-radius: 2px;
 }
 
-.img {
+.player {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Fade in on decode. opacity only — no filter, no geometry. */
-  opacity: 0;
-  transition: opacity 420ms var(--ease);
-}
-
-.imgLoaded {
-  opacity: 1;
-}
-
-/* Used when the frame is stretched by a parent (home hero banner) instead of
-   reserving height via aspect-ratio. */
-.fill {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.fill .frame {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  border-radius: 0;
   border: 0;
 }
-
-/* ---- Empty slot ----------------------------------------------------------- */
 
 .placeholder {
   display: flex;
@@ -55,7 +25,6 @@
   justify-content: center;
   gap: var(--space-1);
   border: 1px solid var(--rule);
-  background: var(--paper-sunk);
   padding: var(--space-4);
   text-align: center;
 }
@@ -84,8 +53,6 @@
   text-transform: uppercase;
   color: var(--rule);
 }
-
-/* ---- Caption -------------------------------------------------------------- */
 
 .caption {
   margin-top: var(--space-3);

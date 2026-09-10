@@ -7,12 +7,18 @@ export const site = {
   name: 'Isabel Su',
   initials: 'IS',
 
-  // REVIEW: the home page opening line. Written to be quiet and specific rather
-  // than a pitch — it names three real, very different things you've built and
-  // lets the range do the talking. Overwrite freely; it's the most "you" sentence
-  // on the site.
+  // Drop a file at src/assets/images/home/banner-<width>.jpg (or run
+  // `npm run images` from assets-raw/home/banner.jpg). Until then the home
+  // hero shows a labelled placeholder behind the name.
+  homeBanner: {
+    key: 'home/banner',
+    alt: '',
+  },
+
+  // Home opening blurb. Deliberately written without naming projects or roles
+  // so it does not go stale as the work behind it changes.
   identity:
-    'Computer science at Georgia Tech. I work on software that makes complicated things easier to use — sign language lessons, retrieval pipelines, audit checklists.',
+    'I’m drawn to problems where the hard part is the thinking. I love working with other passionate people and building things that hold up over time, whether that means a polished app or a well-documented codebase.',
 
   education: {
     school: 'Georgia Institute of Technology',
@@ -43,26 +49,29 @@ export const site = {
 /**
  * The four entry points on the home page. `blurb` is the one-line description
  * under each; keep them short — they're read at a glance, not studied.
+ *
+ * These describe what each page is rather than what is currently on it, so
+ * adding a project or a role does not mean rewriting the home page.
  */
 export const entryPoints = [
   {
     to: '/projects',
     label: 'Projects',
-    blurb: 'iOS apps, valuation models, and the occasional 36-hour sprint.',
+    blurb: 'The work I pick up on my own, start to finish.',
   },
   {
     to: '/work',
     label: 'Work',
-    blurb: 'Corporate finance automation and AI research, in that order.',
+    blurb: 'Research, teaching, and industry — where I’ve been paid to learn.',
   },
   {
     to: '/hobbies',
     label: 'Hobbies',
-    blurb: 'Photographs, folded paper, and a lot of miles.',
+    blurb: 'What I’m doing when I’m not at a keyboard.',
   },
   {
     to: '/about',
     label: 'About',
-    blurb: 'The short version, plus how to reach me.',
+    blurb: 'My story, plus how to reach me.',
   },
 ]

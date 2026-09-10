@@ -13,22 +13,16 @@ export default function ProjectsIndex() {
       <PageHeader
         eyebrow={`${projects.length} projects`}
         title="Things I've built."
-        lede="Mostly iOS, mostly on teams, mostly under a deadline."
+        lede="End-to-end solutions to problems I'm passionate about, packaged in the form of apps and websites."
       />
 
-      {/* The first card spans the full width and everything after it sits two-up.
-          Works for any number of projects — nothing to adjust when one is added. */}
       <Stagger className={styles.grid}>
         {projects.map((project, i) => (
           <StaggerItem key={project.slug} className={styles.cell}>
             <ProjectCard
               project={project}
-              priority={i === 0}
-              sizes={
-                i === 0
-                  ? '(max-width: 860px) 100vw, 74rem'
-                  : '(max-width: 860px) 100vw, 37rem'
-              }
+              priority={i < 2}
+              sizes="(max-width: 860px) 100vw, 37rem"
             />
           </StaggerItem>
         ))}

@@ -1,44 +1,69 @@
 import { m, useReducedMotion } from 'framer-motion'
 import { entryPoints, site } from '../content/site'
-import { sortedWork } from '../content/work'
+import { Figure } from '../components/Figure'
 import { PrefetchLink } from '../components/PrefetchLink'
-import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
-import { fadeUp, fadeUpTight, stagger, still } from '../motion/tokens'
+import { Stagger, StaggerItem } from '../motion/Reveal'
+import { fadeUp, stagger, still } from '../motion/tokens'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './Home.module.css'
+
+function HeroMark({ children, delay }) {
+  return (
+    <span className={styles.mark}>
+      <span
+        className={`${styles.markFill} home-mark-fill`}
+        aria-hidden="true"
+        style={{ '--home-mark-delay': `${delay}s` }}
+      />
+      <span className={styles.markText}>{children}</span>
+    </span>
+  )
+}
 
 export default function Home() {
   useDocumentTitle()
   const reduced = useReducedMotion()
-  const current = sortedWork.find((role) => role.current)
 
   return (
     <>
-      {/* The opening screen. Content sits at the bottom of the first viewport —
-          the empty space above the name is doing as much work as the name. */}
+      {/* Opening screen. The banner fills from the top of the page down to the
+          edge under the name; the blurb sits on paper below that. */}
       <m.section
-        className={`container ${styles.hero}`}
+        className={styles.hero}
         variants={reduced ? still : stagger}
         initial="hidden"
         animate="visible"
       >
-        <m.p className={`eyebrow ${styles.eyebrow}`} variants={reduced ? still : fadeUpTight}>
-          {site.education.degree} &middot; {site.education.schoolShort} &middot; Class of{' '}
-          {site.education.gradYear}
-        </m.p>
+        <div className={styles.bannerPanel}>
+          <div className={styles.bannerMedia} aria-hidden="true">
+            <Figure
+              image={site.homeBanner}
+              fill
+              priority
+              showCaption={false}
+              sizes="100vw"
+            />
+          </div>
 
-        <m.h1 className={`display ${styles.name}`} variants={reduced ? still : fadeUp}>
-          {site.name}
-        </m.h1>
+          <div className={`container ${styles.bannerCopy}`}>
+            <p className={`eyebrow ${styles.eyebrow}`}>
+              <HeroMark delay={0.12}>
+                {site.education.degree} &middot; {site.education.schoolShort} &middot; Class of{' '}
+                {site.education.gradYear}
+              </HeroMark>
+            </p>
 
-        <m.hr className={styles.rule} variants={reduced ? still : fadeUpTight} />
+            <h1 className={`display ${styles.name}`}>
+              <HeroMark delay={0.32}>{site.name}</HeroMark>
+            </h1>
+          </div>
+        </div>
 
-        <m.p className={styles.statement} variants={reduced ? still : fadeUp}>
-          {site.identity}
-        </m.p>
+        <m.div className={`container ${styles.statementWrap}`} variants={reduced ? still : fadeUp}>
+          <p className={styles.statement}>{site.identity}</p>
+        </m.div>
       </m.section>
 
-      {/* The real navigation of the site: four large rows rather than a menu. */}
       <Stagger as="nav" className={`container ${styles.index}`} aria-label="Sections">
         {entryPoints.map((entry, i) => (
           <StaggerItem key={entry.to}>
@@ -53,15 +78,6 @@ export default function Home() {
           </StaggerItem>
         ))}
       </Stagger>
-
-      {current && (
-        <Reveal className={`container ${styles.currently}`}>
-          <span className="eyebrow">Currently</span>
-          <p className={styles.currentlyText}>
-            {current.role} at <strong>{current.org}</strong>, {current.location}.
-          </p>
-        </Reveal>
-      )}
     </>
   )
 }

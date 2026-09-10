@@ -3,12 +3,37 @@
 .hero {
   display: flex;
   flex-direction: column;
+  /* Banner + blurb are one first screen. svh stays put when mobile chrome
+     shows or hides, so this does not jump or overflow the fold. Extra space
+     goes into the photo, not empty paper under the blurb. */
+  min-height: 100svh;
+  box-sizing: border-box;
+  padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+/* Grows to fill everything above the blurb, so the image stops under the name. */
+.bannerPanel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-end;
-  /* svh, not vh — vh is measured against the expanded browser chrome on mobile,
-     which pushes the statement below the fold on first paint. */
-  min-height: 88svh;
+  flex: 1 1 auto;
   padding-top: var(--page-top);
-  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.bannerMedia {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--paper-sunk);
+}
+
+.bannerCopy {
+  position: relative;
+  z-index: 1;
+  /* A little air so the name does not sit flush on the image’s bottom edge. */
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
 .eyebrow {
@@ -22,11 +47,36 @@
   max-width: 12ch;
 }
 
-.rule {
-  border: 0;
-  border-top: 1px solid var(--rule);
-  margin-top: clamp(2rem, 5vw, 3rem);
-  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+/* Marker swipe behind the hero type so it stays readable on the photo.
+   Olive is the site accent — brown would recede into the rocks and the hat.
+   Cream type on the fill, not ink, so it holds up on both snow and trees.
+   The wipe is scaleX only (compositor), then the fill stays. */
+.mark {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--paper);
+  padding: 0.08em 0.28em;
+}
+
+.markFill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--accent);
+}
+
+.markText {
+  position: relative;
+  z-index: 1;
+}
+
+.statementWrap {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  padding-top: clamp(1.5rem, 4vw, 2.25rem);
 }
 
 .statement {
@@ -75,6 +125,10 @@
   transition: color var(--dur-base) var(--ease);
 }
 
+.rowBlurb.placeholder {
+  color: var(--clay);
+}
+
 .rowArrow {
   justify-self: end;
   color: var(--ink-faint);
@@ -93,27 +147,6 @@
 .row:hover .rowArrow {
   color: var(--accent);
   transform: translateX(6px);
-}
-
-/* ---- Currently ------------------------------------------------------------ */
-
-.currently {
-  display: grid;
-  gap: var(--space-3);
-  padding-bottom: var(--section-y);
-}
-
-.currentlyText {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  letter-spacing: var(--tracking-tight);
-  color: var(--ink-soft);
-  max-width: 40ch;
-}
-
-.currentlyText strong {
-  color: var(--ink);
-  font-weight: 400;
 }
 
 @media (max-width: 780px) {

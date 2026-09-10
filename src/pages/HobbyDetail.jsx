@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { getHobby, getHobbyNeighbors } from '../content/hobbies'
+import { Copy } from '../components/Placeholder'
 import { Figure } from '../components/Figure'
 import { Gallery } from '../components/Gallery'
 import { PageHeader } from '../components/PageHeader'
@@ -43,10 +44,22 @@ export default function HobbyDetail() {
         <div className="prose">
           {hobby.intro.map((paragraph) => (
             <p key={paragraph.slice(0, 40)} className={styles.introText}>
-              {paragraph}
+              <Copy>{paragraph}</Copy>
             </p>
           ))}
         </div>
+        {hobby.external && (
+          <p className={styles.external}>
+            <a
+              className="link"
+              href={hobby.external.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Copy>{hobby.external.label}</Copy>
+            </a>
+          </p>
+        )}
       </Reveal>
 
       {isGallery ? (

@@ -1,3 +1,9 @@
+.page {
+  /* Pull the footer up by its own margin so the last card’s padding — not an
+     extra section gap — is what sits above the footer rule. */
+  margin-bottom: calc(-1 * var(--section-y));
+}
+
 .intro {
   padding-bottom: clamp(3rem, 7vw, 5rem);
   border-bottom: 1px solid var(--rule);
@@ -14,15 +20,36 @@
 }
 
 .list {
-  padding-bottom: var(--section-y);
+  padding-bottom: 0;
 }
 
 .entry {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry:last-child {
+  border-bottom: 0;
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.entryInner {
   display: grid;
   grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
   gap: clamp(1.5rem, 5vw, 4rem);
-  padding-block: clamp(2.5rem, 6vw, 4rem);
-  border-bottom: 1px solid var(--rule);
+  transition: opacity 160ms var(--ease), filter 160ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .list:has(.entry:hover) .entryInner {
+    opacity: 0.38;
+    filter: grayscale(0.55);
+  }
+
+  .list:has(.entry:hover) .entry:hover .entryInner {
+    opacity: 1;
+    filter: none;
+  }
 }
 
 .aside {
@@ -87,7 +114,7 @@
 }
 
 @media (max-width: 860px) {
-  .entry {
+  .entryInner {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }

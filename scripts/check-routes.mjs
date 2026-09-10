@@ -24,19 +24,96 @@ import { createElement } from 'react'
  * Avoid apostrophes in expectations — React escapes them to &#x27;.
  */
 const ROUTES = [
-  { path: '/', expect: ['Isabel Su', 'sign language lessons', 'Hobbies'] },
-  { path: '/projects', expect: ['Talking Fingers', 'SkillSwap', 'GridX'] },
+  {
+    path: '/',
+    expect: [
+      'Isabel Su',
+      'hard part is the thinking',
+      'start to finish',
+      'Hobbies',
+      'home/banner',
+    ],
+  },
+  {
+    path: '/projects',
+    expect: [
+      'Talking Fingers',
+      'SkillSwap',
+      'GridX',
+      'Wave Simulator',
+      'Classifier for Service Choice in Tennis',
+      'EZ-Eats Meal Planner',
+      'GT Movies Store',
+    ],
+  },
   {
     path: '/projects/talking-fingers',
-    expect: ['spaced-repetition', 'semantic search', 'Best App Overall', 'projects/talking-fingers-cover'],
+    expect: ['Senior Developer', 'Vision', 'spaced-repetition', 'semantic search', 'Best App Overall'],
   },
-  { path: '/projects/skillswap', expect: ['document-based', 'judging demo'] },
-  { path: '/projects/gridx', expect: ['valuation model', '36 hours'] },
-  { path: '/work', expect: ['Prudential Financial', 'Nexus', 'SOX', 'RAG pipeline'] },
-  { path: '/about', expect: ['Contact', 'isabelsu2025@gmail.com', 'about/portrait'] },
-  { path: '/hobbies', expect: ['Photography', 'Origami', 'Tennis', 'Running', 'Hiking'] },
+  {
+    path: '/projects/skillswap',
+    expect: ['Junior Developer', 'Firebase', 'skill-tracking'],
+  },
+  {
+    path: '/projects/gridx',
+    expect: ['Contributor, team of 4', 'Pandas', 'NumPy', 'valuation model', '36 hours'],
+  },
+  {
+    path: '/projects/wave-simulator',
+    expect: ['Wave Simulator', 'NumPy', 'interference'],
+  },
+  {
+    path: '/projects/tennis-service-classifier',
+    expect: ['TensorFlow', 'coin-toss', 'Google Colab'],
+  },
+  {
+    path: '/projects/ez-eats',
+    expect: ['EZ-Eats', 'Spring Boot', 'MongoDB'],
+  },
+  {
+    path: '/projects/gt-movies-store',
+    expect: [
+      'GT Movies Store',
+      'Django',
+      'Bootstrap',
+      'Placeholder video',
+      'user story',
+      'CS 2340',
+      'Sep 2026',
+      'Independent',
+      'Challenges',
+    ],
+  },
+  {
+    path: '/work',
+    expect: [
+      'Prudential Financial',
+      'Nexus',
+      'SOX',
+      'RAG pipeline',
+      'Discrete Math TA',
+      'AI Safety Initiative',
+      'Technical Safety Fellow',
+    ],
+  },
+  {
+    path: '/about',
+    expect: [
+      'Contact',
+      'isabelsu2025@gmail.com',
+      'about/portrait',
+      'NYC Metropolitan Area',
+      'Tools I reach for',
+      'Scikit-Learn',
+    ],
+  },
+  {
+    path: '/hobbies',
+    expect: ['Photography', 'Origami', 'Tennis', 'Running', 'Hiking', 'Restaurants'],
+  },
   { path: '/hobbies/photography', expect: ['Photography', 'hobbies/photography-01'] },
   { path: '/hobbies/origami', expect: ['Origami', 'hobbies/origami-01'] },
+  { path: '/hobbies/restaurants', expect: ['Restaurants', 'Beli', 'hobbies/restaurants-01'] },
   { path: '/hobbies/tennis', expect: ['Tennis', 'hobbies/tennis-cover'] },
   { path: '/hobbies/running', expect: ['Running'] },
   { path: '/hobbies/hiking', expect: ['Hiking'] },

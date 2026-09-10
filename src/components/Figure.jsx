@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getImage } from '../lib/images'
+import { Copy } from './Placeholder'
 import styles from './Figure.module.css'
 
 /**
@@ -13,7 +14,7 @@ import styles from './Figure.module.css'
  *
  * @param {{key:string, ratio:string, alt:string, caption?:string}} image
  * @param {boolean} priority  true for above-the-fold images (skips lazy loading)
- * @param {string}  sizes     responsive sizes hint; match the layout width
+ * @param {boolean} fill      stretch to fill a positioned parent instead of using aspect-ratio
  */
 export function Figure({
   image,
@@ -21,31 +22,35 @@ export function Figure({
   sizes = '(max-width: 720px) 100vw, 50vw',
   className = '',
   showCaption = true,
+  fill = false,
   ...rest
 }) {
   const [loaded, setLoaded] = useState(false)
   const resolved = image?.key ? getImage(image.key) : null
   const ratio = image?.ratio || '4 / 3'
 
-  const frameStyle = { aspectRatio: ratio }
+  const frameStyle = fill ? undefined : { aspectRatio: ratio }
+  const figureClass = `${styles.figure} ${fill ? styles.fill : ''} ${className}`.trim()
 
   if (!resolved) {
     return (
-      <figure className={`${styles.figure} ${className}`} {...rest}>
+      <figure className={figureClass} {...rest}>
         <div className={`${styles.frame} ${styles.placeholder}`} style={frameStyle}>
-          {/* Naming the expected file turns an empty slot into an instruction. */}
+          <span className={styles.placeholderFlag}>Placeholder image</span>
           <span className={styles.placeholderKey}>{image?.key || 'image'}</span>
-          <span className={styles.placeholderRatio}>{ratio}</span>
+          {!fill && <span className={styles.placeholderRatio}>{ratio}</span>}
         </div>
         {showCaption && image?.caption ? (
-          <figcaption className={styles.caption}>{image.caption}</figcaption>
+          <figcaption className={styles.caption}>
+            <Copy>{image.caption}</Copy>
+          </figcaption>
         ) : null}
       </figure>
     )
   }
 
   return (
-    <figure className={`${styles.figure} ${className}`} {...rest}>
+    <figure className={figureClass} {...rest}>
       <div className={styles.frame} style={frameStyle}>
         <picture>
           {resolved.avif && <source type="image/avif" srcSet={resolved.avif} sizes={sizes} />}
@@ -65,8 +70,10 @@ export function Figure({
         </picture>
       </div>
       {showCaption && image?.caption ? (
-        <figcaption className={styles.caption}>{image.caption}</figcaption>
-      ) : null}
+          <figcaption className={styles.caption}>
+            <Copy>{image.caption}</Copy>
+          </figcaption>
+        ) : null}
     </figure>
   )
 }
