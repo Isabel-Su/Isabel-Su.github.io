@@ -6,8 +6,6 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './NotFound.module.css'
 
 export default function NotFound() {
-  useDocumentTitle('Not found')
-
   return (
     <div className="container">
       <PageHeader

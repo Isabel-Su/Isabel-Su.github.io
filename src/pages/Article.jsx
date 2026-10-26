@@ -15,8 +15,6 @@ export default function Article() {
   const article = getArticle(slug)
   const [html, setHtml] = useState('')
 
-  useDocumentTitle(article?.title)
-
   useEffect(() => {
     if (!article) return undefined
     let cancelled = false

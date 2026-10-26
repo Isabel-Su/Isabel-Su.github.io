@@ -8,8 +8,6 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './About.module.css'
 
 export default function About() {
-  useDocumentTitle('About')
-
   return (
     <div className="container">
       <PageHeader eyebrow="About" title={about.heading} />

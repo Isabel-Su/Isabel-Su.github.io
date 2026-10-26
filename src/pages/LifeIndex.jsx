@@ -8,15 +8,14 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './LifeIndex.module.css'
 
 export default function LifeIndex() {
-  useDocumentTitle('Life')
   const recent = recentArticles(4)
 
   return (
     <div className={`container ${styles.page}`}>
       <PageHeader
-        eyebrow="Outside of work"
-        title="Everything else."
-        lede="What I spend time on when there is no deadline attached."
+        eyebrow="Life"
+        title="After hours activities."
+        lede="What my mind wanders to."
       />
 
       <div className={styles.layout}>

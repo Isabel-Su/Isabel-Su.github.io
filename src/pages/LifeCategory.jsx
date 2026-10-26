@@ -17,8 +17,6 @@ export default function LifeCategory() {
   const { slug } = useParams()
   const category = getLife(slug)
 
-  useDocumentTitle(category?.name)
-
   if (!category) return <NotFound />
 
   const { prev, next } = getLifeNeighbors(slug)

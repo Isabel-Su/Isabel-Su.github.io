@@ -19,8 +19,6 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProject(slug)
 
-  useDocumentTitle(project?.title, { keepCase: true })
-
   if (!project) return <NotFound />
 
   const { prev, next } = getProjectNeighbors(slug)

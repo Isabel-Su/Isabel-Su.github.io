@@ -5,7 +5,7 @@
 
 export const site = {
   name: 'Isabel Su',
-  initials: 'IS',
+  initials: 'isu',
 
   // Drop a file at src/assets/images/home/banner-<width>.jpg (or run
   // `npm run images` from assets-raw/home/banner.jpg). Until then the home
@@ -42,7 +42,7 @@ export const site = {
 }
 
 /**
- * The four entry points on the home page. `blurb` is the one-line description
+ * The 3 entry points on the home page. `blurb` is the one-line description
  * under each; keep them short — they're read at a glance, not studied.
  *
  * These describe what each page is rather than what is currently on it, so
@@ -52,16 +52,16 @@ export const entryPoints = [
   {
     to: '/projects',
     label: 'Projects',
-    blurb: 'The work I pick up on my own, start to finish.',
+    blurb: 'Solutions to problems',
   },
   {
     to: '/life',
     label: 'Life',
-    blurb: 'What I’m doing when I’m not at a keyboard.',
+    blurb: 'What I’m doing when I’m not at a keyboard',
   },
   {
     to: '/about',
     label: 'About',
-    blurb: 'My story, plus how to reach me.',
+    blurb: 'My story, plus how to reach me',
   },
 ]

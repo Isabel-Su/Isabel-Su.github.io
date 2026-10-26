@@ -6,12 +6,10 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './ProjectsIndex.module.css'
 
 export default function ProjectsIndex() {
-  useDocumentTitle('Projects')
-
   return (
     <div className="container">
       <PageHeader
-        eyebrow={`${projects.length} projects`}
+        eyebrow={`Projects`}
         title="Things I've built."
       />
 
