@@ -1,5 +1,4 @@
 import { lazyWithPreload } from './lib/lazyWithPreload'
-import { RedirectHome, RedirectLife } from './pages/Redirects'
 
 /*
  * Every page is its own chunk, so a visitor landing on /about never downloads
@@ -30,9 +29,6 @@ export const routes = [
   { path: '/life/articles/:slug', Component: pages.article },
   { path: '/life/:slug', Component: pages.lifeCategory },
   { path: '/about', Component: pages.about },
-  { path: '/work', Component: RedirectHome },
-  { path: '/hobbies', Component: RedirectLife },
-  { path: '/hobbies/:slug', Component: RedirectLife },
   { path: '*', Component: pages.notFound },
 ]
 

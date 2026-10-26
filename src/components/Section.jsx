@@ -6,12 +6,9 @@ import styles from './Section.module.css'
  * screens and stacks above the content on narrow ones — an editorial two-column
  * rhythm that also keeps body copy near the ideal measure without extra work.
  */
-export function Section({ title, index, children, aside = true, className = '' }) {
+export function Section({ title, index, children }) {
   return (
-    <Reveal
-      as="section"
-      className={`${styles.section} ${aside ? styles.split : ''} ${className}`}
-    >
+    <Reveal as="section" className={styles.section}>
       {title && (
         <div className={styles.head}>
           {index != null && <span className={styles.index}>{String(index).padStart(2, '0')}</span>}

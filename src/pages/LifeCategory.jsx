@@ -41,13 +41,6 @@ export default function LifeCategory() {
             </p>
           ))}
         </div>
-        {category.external && (
-          <p className={styles.external}>
-            <a className="link" href={category.external.href} target="_blank" rel="noreferrer">
-              <Copy>{category.external.label}</Copy>
-            </a>
-          </p>
-        )}
       </Reveal>
 
       {isGallery && (

@@ -4,7 +4,7 @@ import styles from './PrevNext.module.css'
 
 /**
  * Bottom-of-page navigation between sibling detail pages.
- * Shared by project and hobby detail routes.
+ * Shared by project and life category routes.
  */
 export function PrevNext({ prev, next, basePath, labelKey = 'title', keepCase = false }) {
   if (!prev && !next) return null

@@ -63,8 +63,7 @@ export default function Home() {
         >
           <p className={`eyebrow ${styles.eyebrow}`}>
             <HeroMark delay={0.12}>
-              {site.education.degree} &middot; {site.education.schoolShort} &middot; Class of{' '}
-              {site.education.gradYear}
+              {site.education.degree} &middot; {site.education.schoolShort}
             </HeroMark>
           </p>
 

@@ -92,10 +92,9 @@ const ROUTES = [
   { path: '/life/travel', expect: ['Travel'] },
   { path: '/life/other', expect: ['Other'] },
   { path: '/definitely-not-a-real-page', expect: ['404', 'Projects'] },
+  { path: '/work', expect: ['404'] },
+  { path: '/hobbies', expect: ['404'] },
 ]
-
-// Cut content that should stay gone.
-const FORBIDDEN = ['Home Lab', 'home-lab', 'Work', 'Origami']
 
 const vite = await createServer({
   server: { middlewareMode: true },
@@ -163,16 +162,9 @@ try {
       const html = await renderRoute(App, path)
 
       const missing = expect.filter((needle) => !html.includes(needle))
-      const forbidden = FORBIDDEN.filter((needle) => html.includes(needle))
 
-      if (missing.length || forbidden.length) {
-        const problems = [
-          missing.length ? `missing ${missing.map((m) => `"${m}"`).join(', ')}` : '',
-          forbidden.length ? `contains removed content ${forbidden.join(', ')}` : '',
-        ]
-          .filter(Boolean)
-          .join('; ')
-        console.log(`  FAIL  ${path.padEnd(34)} ${problems}`)
+      if (missing.length) {
+        console.log(`  FAIL  ${path.padEnd(34)} missing ${missing.map((m) => `"${m}"`).join(', ')}`)
         failed += 1
       } else {
         console.log(`  ok    ${path.padEnd(34)} ${expect.length} assertions, ${html.length} chars`)

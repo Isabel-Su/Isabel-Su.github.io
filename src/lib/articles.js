@@ -13,7 +13,6 @@ export function articlesForTag(tag) {
 export function articlesForProject(slug) {
   return articles
     .filter((article) => article.projects.includes(slug))
-    .slice()
     .sort((a, b) => a.stamp - b.stamp || a.slug.localeCompare(b.slug))
 }
 

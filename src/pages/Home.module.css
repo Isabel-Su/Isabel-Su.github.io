@@ -71,17 +71,6 @@
   z-index: 1;
 }
 
-.cue {
-  position: relative;
-  z-index: 1;
-  padding-inline: var(--gutter);
-  padding-bottom: clamp(1.25rem, 3vw, 2rem);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-eyebrow);
-  color: var(--paper);
-  mix-blend-mode: difference;
-}
-
 /* ---- Second screen -------------------------------------------------------- */
 
 .next {
@@ -120,10 +109,6 @@
   font-size: var(--text-sm);
   color: var(--ink-faint);
   transition: color var(--dur-base) var(--ease);
-}
-
-.rowBlurb.placeholder {
-  color: var(--clay);
 }
 
 .rowArrow {

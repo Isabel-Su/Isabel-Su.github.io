@@ -5,7 +5,7 @@ import { Stagger, StaggerItem } from '../motion/Reveal'
 import styles from './Gallery.module.css'
 
 /**
- * Image grid used by both hobby modes and by project screenshot strips.
+ * Image grid used by the life gallery and simple modes and by project screenshot strips.
  *
  * variant 'masonry' — CSS multi-column, so mixed portrait/landscape photos pack
  *                     without gaps. No JS measuring, no resize listeners.
