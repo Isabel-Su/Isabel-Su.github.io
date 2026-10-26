@@ -1,9 +1,17 @@
+/* One rhythm for every block below the header: a hairline, then the same
+   space above and below, so no section reads as closer to its neighbor. */
+.layout,
+.tools,
+.contact {
+  --about-gap: clamp(3rem, 7vw, 5.5rem);
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
   gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
-  padding-bottom: var(--section-y);
+  padding-bottom: var(--about-gap);
 }
 
 .portrait {
@@ -46,13 +54,20 @@
 
 /* ---- Tools ---------------------------------------------------------------- */
 
-.tools {
+.tools,
+.contact {
   display: grid;
-  gap: var(--space-5);
-  padding-bottom: var(--section-y);
+  gap: var(--space-6);
+  padding-block: var(--about-gap);
+  border-top: 1px solid var(--rule);
 }
 
-.toolsTitle {
+.sectionHead {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
   font-size: var(--text-2xl);
   letter-spacing: var(--tracking-tight);
 }
@@ -61,8 +76,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: var(--space-6) var(--space-5);
-  padding-top: clamp(1.5rem, 4vw, 2.5rem);
-  border-top: 1px solid var(--rule);
 }
 
 .toolGroup {
@@ -76,36 +89,6 @@
   font-size: var(--text-sm);
   color: var(--ink);
   line-height: 1.55;
-}
-
-/* ---- Contact -------------------------------------------------------------- */
-
-.contact {
-  display: grid;
-  gap: clamp(2.5rem, 6vw, 4rem);
-  padding-top: clamp(3rem, 7vw, 5rem);
-  border-top: 1px solid var(--rule);
-}
-
-.contactHead {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.contactTitle {
-  font-size: var(--text-3xl);
-  letter-spacing: var(--tracking-display);
-}
-
-.contactNote {
-  color: var(--ink-soft);
-  max-width: 44ch;
-  text-wrap: pretty;
-}
-
-.signoff {
-  padding-block: var(--section-y);
-  font-size: var(--text-sm);
 }
 
 @media (max-width: 860px) {

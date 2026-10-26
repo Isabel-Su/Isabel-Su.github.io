@@ -13,7 +13,6 @@ export default function ProjectsIndex() {
       <PageHeader
         eyebrow={`${projects.length} projects`}
         title="Things I've built."
-        lede="End-to-end solutions to problems I'm passionate about, packaged in the form of apps and websites."
       />
 
       <Stagger className={styles.grid}>

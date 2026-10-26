@@ -67,6 +67,7 @@
   gap: var(--space-4);
   margin-top: var(--space-5);
   max-width: var(--measure);
+  text-transform: none;
 }
 
 /* Hanging hairline dash instead of a bullet — quieter, and it lines the list up

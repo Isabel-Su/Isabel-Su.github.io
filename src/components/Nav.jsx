@@ -6,6 +6,26 @@ import { PrefetchLink } from './PrefetchLink'
 import { DUR, EASE } from '../motion/tokens'
 import styles from './Nav.module.css'
 
+function NavItem({ item, className, nav = false }) {
+  if (item.external) {
+    return (
+      <a className={className} href={item.href} target="_blank" rel="noreferrer">
+        {item.label}
+      </a>
+    )
+  }
+
+  const linkClass = nav
+    ? ({ isActive }) => `${className} ${isActive ? styles.linkActive : ''}`
+    : className
+
+  return (
+    <PrefetchLink to={item.to} nav={nav} className={linkClass}>
+      {item.label}
+    </PrefetchLink>
+  )
+}
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -37,22 +57,21 @@ export function Nav() {
     }
   }, [menuOpen])
 
-  const linkClass = ({ isActive }) =>
-    `${styles.link} ${isActive ? styles.linkActive : ''}`
-
   return (
     <>
       <header className={`${styles.bar} ${scrolled ? styles.barScrolled : ''}`}>
         <div className={`container ${styles.inner}`}>
-          <PrefetchLink to="/" className={styles.mark} aria-label={`${site.name} — home`}>
+          <PrefetchLink
+            to="/"
+            className={`${styles.mark} keep-case`}
+            aria-label={`${site.name} — home`}
+          >
             {site.initials}
           </PrefetchLink>
 
           <nav className={styles.links} aria-label="Primary">
             {site.nav.map((item) => (
-              <PrefetchLink key={item.to} to={item.to} nav className={linkClass}>
-                {item.label}
-              </PrefetchLink>
+              <NavItem key={item.label} item={item} nav className={styles.link} />
             ))}
           </nav>
 
@@ -78,7 +97,7 @@ export function Nav() {
             <nav className={styles.overlayNav} aria-label="Primary, mobile">
               {site.nav.map((item, i) => (
                 <m.div
-                  key={item.to}
+                  key={item.label}
                   initial={reduced ? {} : { opacity: 0, y: 12 }}
                   animate={
                     reduced
@@ -90,9 +109,7 @@ export function Nav() {
                         }
                   }
                 >
-                  <PrefetchLink to={item.to} className={styles.overlayLink}>
-                    {item.label}
-                  </PrefetchLink>
+                  <NavItem item={item} className={styles.overlayLink} />
                 </m.div>
               ))}
             </nav>

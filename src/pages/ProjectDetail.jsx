@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { getProject, getProjectNeighbors } from '../content/projects'
+import { articlesForProject } from '../lib/articles'
+import { ProcessToggle } from '../components/ProcessToggle'
 import { Copy } from '../components/Placeholder'
 import { PageHeader } from '../components/PageHeader'
 import { Figure } from '../components/Figure'
@@ -17,11 +19,12 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProject(slug)
 
-  useDocumentTitle(project?.title)
+  useDocumentTitle(project?.title, { keepCase: true })
 
   if (!project) return <NotFound />
 
   const { prev, next } = getProjectNeighbors(slug)
+  const process = articlesForProject(slug)
 
   const meta = [
     { label: 'Role', value: project.role },
@@ -35,7 +38,12 @@ export default function ProjectDetail() {
         &#8592; Projects
       </PrefetchLink>
 
-      <PageHeader eyebrow={project.context} title={project.title} lede={project.tagline} />
+      <PageHeader
+        eyebrow={project.context}
+        title={project.title}
+        lede={project.tagline}
+        keepTitleCase
+      />
 
       <Reveal as="dl" className={styles.meta}>
         {meta.map((item) => (
@@ -82,6 +90,7 @@ export default function ProjectDetail() {
             )}
           </Section>
         ))}
+
       </div>
 
       {project.gallery?.length > 0 && (
@@ -112,7 +121,9 @@ export default function ProjectDetail() {
         </section>
       )}
 
-      <PrevNext prev={prev} next={next} basePath="/projects" />
+      {process.length > 0 && <ProcessToggle articles={process} />}
+
+      <PrevNext prev={prev} next={next} basePath="/projects" keepCase />
     </div>
   )
 }

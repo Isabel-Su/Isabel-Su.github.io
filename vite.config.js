@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { copyFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { articlesPlugin } from './scripts/vite-articles.mjs'
+import { lifeSlugs } from './src/content/life.js'
 
 // GitHub Pages serves a plain static file tree with no SPA rewrite rule, so a
 // hard load of /projects/gridx would hit Pages' own 404. Shipping a byte-identical
@@ -25,7 +27,7 @@ export default defineConfig({
   // project repo served at /<repo>/, change this to '/<repo>/' and set the same
   // value as <BrowserRouter basename> in src/main.jsx.
   base: '/',
-  plugins: [react(), spaFallback()],
+  plugins: [react(), spaFallback(), articlesPlugin({ categories: lifeSlugs })],
   build: {
     target: 'es2020',
     assetsInlineLimit: 2048,

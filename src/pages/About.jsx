@@ -47,10 +47,12 @@ export default function About() {
 
       {about.tools?.length > 0 && (
         <Reveal as="section" className={styles.tools} aria-labelledby="tools-heading">
-          <span className="eyebrow">Toolkit</span>
-          <h2 id="tools-heading" className={styles.toolsTitle}>
-            {about.toolsHeading}
-          </h2>
+          <div className={styles.sectionHead}>
+            <span className="eyebrow">Toolkit</span>
+            <h2 id="tools-heading" className={styles.sectionTitle}>
+              {about.toolsHeading}
+            </h2>
+          </div>
           <dl className={styles.toolGroups}>
             {about.tools.map((group) => (
               <div key={group.label} className={styles.toolGroup}>
@@ -63,13 +65,9 @@ export default function About() {
       )}
 
       <Reveal as="section" className={styles.contact} id="contact">
-        <div className={styles.contactHead}>
+        <div className={styles.sectionHead}>
           <span className="eyebrow">Contact</span>
-          <h2 className={styles.contactTitle}>Say hello.</h2>
-          <p className={styles.contactNote}>
-            The fastest way to reach me is email. I read everything, and I answer
-            most things within a day or two.
-          </p>
+          <h2 className={styles.sectionTitle}>Say hello.</h2>
         </div>
         <ContactLinks />
       </Reveal>

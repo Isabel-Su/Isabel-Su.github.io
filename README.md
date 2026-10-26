@@ -95,8 +95,8 @@ should almost never need to touch a component to update the site.
 src/content/
   site.js        name, tagline, nav links, email/GitHub/LinkedIn
   projects.js    the projects, their narratives, and their images
-  work.js        work experience
-  hobbies.js     hobbies, and which layout each one uses
+  life.js        life archive categories
+  articles/      markdown posts; drop a file in and it shows up
   about.js       about paragraph, portrait, and the facts list
 ```
 
@@ -108,29 +108,57 @@ Append an object to the `projects` array in
 appear automatically. Copy an existing entry as a template — the fields are
 documented in a comment at the top of the file.
 
-### Adding a work role (e.g. the Discrete Math TA position)
+### Writing an article
 
-Append an object to the `work` array in
-[`src/content/work.js`](src/content/work.js). There is a ready-to-fill template
-in the comment block at the top of that file.
+Drop a markdown file anywhere under
+[`src/content/articles/`](src/content/articles/). Subfolders are just
+organization — a first-level folder that matches a life category (for example
+`articles/running/foo.md`) is treated as a tag. Files that start with `_` are
+ignored, so [`_template.md`](src/content/articles/_template.md) is a starter
+you can copy.
 
-Entries **sort themselves** — anything with `current: true` floats to the top,
-then everything else by end date, most recent first. So you can paste a new role
-anywhere in the array and it will land in the right place.
+```md
+---
+title: first long run of the fall
+tags: [running, hiking]
+projects: [talking-fingers]
+summary: optional one-liner for the recently feed
+# updated: 2026-10-05
+# draft: true
+---
 
-### Adding a hobby
+Body in plain markdown. Images next to the file work: `![](./trail.jpg)`
+```
 
-Append to the `hobbies` array in
-[`src/content/hobbies.js`](src/content/hobbies.js) and pick a `mode`:
+The post then appears in three places with no other edits:
+
+- the **recently** feed on `/life` (newest four)
+- the **articles** toggle on each tagged category (`/life/running`, …)
+- a **process** section on any tagged project (`/projects/talking-fingers`)
+
+Dates display as `Month 05, 2026` on the right of each row. They come from, in
+order:
+
+1. an `updated` field in the header, if you add one (an override — leave it out normally)
+2. the date of the file's last git commit
+3. the file's modified time on disk, for files you have not committed yet
+
+The live site is built from a fresh clone, where every file's modified time is
+the moment of the build, so the commit date is what stands in for "last
+modified" there. `draft: true` hides the post from production builds.
+
+### Adding a life category
+
+Append to the `life` array in [`src/content/life.js`](src/content/life.js) and
+pick a `mode`:
 
 - `'gallery'` — intro paragraph plus a full masonry photo grid with a lightbox.
-  Used by Photography and Origami.
 - `'simple'` — intro paragraph, one lead image, and a light row of photos.
-  Used by Tennis, Running, and Hiking.
+- `'text'` — intro paragraph only (reading, thoughts, travel, other).
 
-Both modes are the same template
-([`src/pages/HobbyDetail.jsx`](src/pages/HobbyDetail.jsx)), so a new hobby never
-means writing a new layout.
+All three are the same template
+([`src/pages/LifeCategory.jsx`](src/pages/LifeCategory.jsx)). Projects are not
+categories — tag them from an article's `projects` field instead.
 
 ---
 
@@ -243,8 +271,7 @@ The big ones:
 
 - **`src/content/site.js`** — the one-line identity statement on the home page
 - **`src/content/about.js`** — the About paragraph is a placeholder; replace it
-- **`src/content/hobbies.js`** — all five hobby intros are placeholders
+- **`src/content/life.js`** — category intros are placeholders
 - **`src/content/projects.js`** — the project narratives expand your bullets into
   problem/build/outcome arcs; the tech stack listed for Talking Fingers is
   inferred and should be corrected
-- **`src/content/work.js`** — the framing line at the top of the Work page

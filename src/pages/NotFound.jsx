@@ -17,11 +17,23 @@ export default function NotFound() {
       />
 
       <Reveal as="nav" className={styles.links} aria-label="Site sections">
-        {site.nav.map((item) => (
-          <PrefetchLink key={item.to} to={item.to} className={styles.link}>
-            {item.label}
-          </PrefetchLink>
-        ))}
+        {site.nav.map((item) =>
+          item.external ? (
+            <a
+              key={item.label}
+              href={item.href}
+              className={styles.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <PrefetchLink key={item.to} to={item.to} className={styles.link}>
+              {item.label}
+            </PrefetchLink>
+          ),
+        )}
       </Reveal>
     </div>
   )

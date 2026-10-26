@@ -15,11 +15,6 @@ export const site = {
     alt: '',
   },
 
-  // Home opening blurb. Deliberately written without naming projects or roles
-  // so it does not go stale as the work behind it changes.
-  identity:
-    'I’m drawn to problems where the hard part is the thinking. I love working with other passionate people and building things that hold up over time, whether that means a polished app or a well-documented codebase.',
-
   education: {
     school: 'Georgia Institute of Technology',
     schoolShort: 'Georgia Tech',
@@ -39,9 +34,9 @@ export const site = {
 
   // Nav order = the order these appear in the header and on the home page.
   nav: [
+    { label: 'Resume', href: '/resume.pdf', external: true },
     { label: 'Projects', to: '/projects' },
-    { label: 'Work', to: '/work' },
-    { label: 'Hobbies', to: '/hobbies' },
+    { label: 'Life', to: '/life' },
     { label: 'About', to: '/about' },
   ],
 }
@@ -60,13 +55,8 @@ export const entryPoints = [
     blurb: 'The work I pick up on my own, start to finish.',
   },
   {
-    to: '/work',
-    label: 'Work',
-    blurb: 'Research, teaching, and industry — where I’ve been paid to learn.',
-  },
-  {
-    to: '/hobbies',
-    label: 'Hobbies',
+    to: '/life',
+    label: 'Life',
     blurb: 'What I’m doing when I’m not at a keyboard.',
   },
   {

@@ -1,22 +1,20 @@
 /*
- * Hobbies.
+ * Life archive categories.
  *
- * One template (src/pages/HobbyDetail.jsx) renders all of these. The only thing
- * that differs between them is `mode`:
+ * One template (src/pages/LifeCategory.jsx) renders all of these. `mode`:
  *
  *   'gallery' — intro paragraph + a full masonry portfolio grid
  *   'simple'  — intro paragraph + a handful of photos in a lighter row
+ *   'text'    — intro paragraph only
  *
- * Optional `external` is a “see more / follow along” link (Instagram, Beli, …).
+ * Articles live in src/content/articles/ as markdown. They tag these slugs
+ * (and optionally project slugs) and show up in the articles toggle here.
  *
- * Adding a hobby is appending an object. Adding a photo is adding an entry to
- * `images` and dropping the matching file into src/assets/images/hobbies/.
- *
- * Every `intro` (and the Restaurants tagline) is `[PLACEHOLDER` copy for Isabel
- * to replace. Image keys with no file yet render as labelled empty frames.
+ * Adding a category is appending an object. Adding a photo is adding an entry
+ * to `images` and dropping the matching file into src/assets/images/hobbies/.
  */
 
-export const hobbies = [
+export const life = [
   {
     slug: 'photography',
     name: 'Photography',
@@ -41,50 +39,12 @@ export const hobbies = [
   },
 
   {
-    slug: 'origami',
-    name: 'Origami',
-    mode: 'gallery',
-    tagline: 'One sheet, no cuts, a great deal of patience.',
+    slug: 'reading',
+    name: 'Reading',
+    mode: 'text',
+    tagline: 'What I am in the middle of, and what stuck.',
     intro: [
-      '[PLACEHOLDER: A few sentences on how you got into folding, what kind of models you go for, and the one that took the longest.]',
-    ],
-    cover: { key: 'hobbies/origami-cover', ratio: '4 / 3', alt: 'Origami' },
-    lightbox: true,
-    images: [
-      { key: 'hobbies/origami-01', ratio: '1 / 1', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
-      { key: 'hobbies/origami-02', ratio: '4 / 5', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
-      { key: 'hobbies/origami-03', ratio: '3 / 2', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
-      { key: 'hobbies/origami-04', ratio: '1 / 1', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
-      { key: 'hobbies/origami-05', ratio: '4 / 5', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
-      { key: 'hobbies/origami-06', ratio: '3 / 2', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
-    ],
-  },
-
-  {
-    slug: 'restaurants',
-    name: 'Restaurants',
-    mode: 'gallery',
-    tagline:
-      '[PLACEHOLDER: One-liner — exploring restaurants, the rooms, the plates, the neighborhoods.]',
-    intro: [
-      '[PLACEHOLDER: A few sentences on how you pick a place, what you notice when you sit down, and why this is a hobby rather than just dinner.]',
-    ],
-    external: {
-      label: '[PLACEHOLDER: Follow along on Beli — paste the real profile URL]',
-      href: 'https://beli.app/placeholder',
-    },
-    cover: { key: 'hobbies/restaurants-cover', ratio: '4 / 3', alt: 'Restaurants' },
-    lightbox: true,
-    images: [
-      { key: 'hobbies/restaurants-01', ratio: '4 / 5', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-02', ratio: '3 / 2', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-03', ratio: '4 / 5', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-04', ratio: '1 / 1', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-05', ratio: '3 / 2', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-06', ratio: '4 / 5', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-07', ratio: '3 / 2', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-08', ratio: '1 / 1', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
-      { key: 'hobbies/restaurants-09', ratio: '4 / 5', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: restaurant / dish]' },
+      '[PLACEHOLDER: A few sentences on how you read, what you reach for, and why it belongs here.]',
     ],
   },
 
@@ -135,16 +95,48 @@ export const hobbies = [
       { key: 'hobbies/hiking-03', ratio: '3 / 2', alt: '[PLACEHOLDER]', caption: '[PLACEHOLDER: caption]' },
     ],
   },
+
+  {
+    slug: 'travel',
+    name: 'Travel',
+    mode: 'text',
+    tagline: 'Places I went, and what I noticed.',
+    intro: [
+      '[PLACEHOLDER: A few sentences on how you travel and what you want this archive to hold.]',
+    ],
+  },
+
+  {
+    slug: 'thoughts',
+    name: 'Thoughts',
+    mode: 'text',
+    tagline: 'Notes that did not fit anywhere else.',
+    intro: [
+      '[PLACEHOLDER: A few sentences on what lands in this folder — half-formed ideas, longer arguments, things you wanted to write down.]',
+    ],
+  },
+
+  {
+    slug: 'other',
+    name: 'Other',
+    mode: 'text',
+    tagline: 'The rest of it.',
+    intro: [
+      '[PLACEHOLDER: A few sentences on the miscellaneous — things that are not a category of their own yet.]',
+    ],
+  },
 ]
 
-export const getHobby = (slug) => hobbies.find((h) => h.slug === slug)
+export const getLife = (slug) => life.find((item) => item.slug === slug)
 
-/** Previous/next for detail-page navigation. Wraps around the ends. */
-export function getHobbyNeighbors(slug) {
-  const i = hobbies.findIndex((h) => h.slug === slug)
+/** Previous/next for category-page navigation. Wraps around the ends. */
+export function getLifeNeighbors(slug) {
+  const i = life.findIndex((item) => item.slug === slug)
   if (i === -1) return { prev: null, next: null }
   return {
-    prev: hobbies[(i - 1 + hobbies.length) % hobbies.length],
-    next: hobbies[(i + 1) % hobbies.length],
+    prev: life[(i - 1 + life.length) % life.length],
+    next: life[(i + 1) % life.length],
   }
 }
+
+export const lifeSlugs = life.map((item) => item.slug)

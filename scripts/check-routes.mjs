@@ -28,9 +28,8 @@ const ROUTES = [
     path: '/',
     expect: [
       'Isabel Su',
-      'hard part is the thinking',
       'start to finish',
-      'Hobbies',
+      'Life',
       'home/banner',
     ],
   },
@@ -43,7 +42,6 @@ const ROUTES = [
       'Wave Simulator',
       'Classifier for Service Choice in Tennis',
       'EZ-Eats Meal Planner',
-      'GT Movies Store',
     ],
   },
   {
@@ -71,32 +69,6 @@ const ROUTES = [
     expect: ['EZ-Eats', 'Spring Boot', 'MongoDB'],
   },
   {
-    path: '/projects/gt-movies-store',
-    expect: [
-      'GT Movies Store',
-      'Django',
-      'Bootstrap',
-      'Placeholder video',
-      'user story',
-      'CS 2340',
-      'Sep 2026',
-      'Independent',
-      'Challenges',
-    ],
-  },
-  {
-    path: '/work',
-    expect: [
-      'Prudential Financial',
-      'Nexus',
-      'SOX',
-      'RAG pipeline',
-      'Discrete Math TA',
-      'AI Safety Initiative',
-      'Technical Safety Fellow',
-    ],
-  },
-  {
     path: '/about',
     expect: [
       'Contact',
@@ -108,20 +80,22 @@ const ROUTES = [
     ],
   },
   {
-    path: '/hobbies',
-    expect: ['Photography', 'Origami', 'Tennis', 'Running', 'Hiking', 'Restaurants'],
+    path: '/life',
+    expect: ['Photography', 'Reading', 'Thoughts', 'Tennis', 'Running', 'Hiking', 'Travel', 'Recently'],
   },
-  { path: '/hobbies/photography', expect: ['Photography', 'hobbies/photography-01'] },
-  { path: '/hobbies/origami', expect: ['Origami', 'hobbies/origami-01'] },
-  { path: '/hobbies/restaurants', expect: ['Restaurants', 'Beli', 'hobbies/restaurants-01'] },
-  { path: '/hobbies/tennis', expect: ['Tennis', 'hobbies/tennis-cover'] },
-  { path: '/hobbies/running', expect: ['Running'] },
-  { path: '/hobbies/hiking', expect: ['Hiking'] },
+  { path: '/life/photography', expect: ['Photography', 'hobbies/photography-01'] },
+  { path: '/life/tennis', expect: ['Tennis', 'hobbies/tennis-cover'] },
+  { path: '/life/running', expect: ['Running'] },
+  { path: '/life/hiking', expect: ['Hiking'] },
+  { path: '/life/reading', expect: ['Reading'] },
+  { path: '/life/thoughts', expect: ['Thoughts'] },
+  { path: '/life/travel', expect: ['Travel'] },
+  { path: '/life/other', expect: ['Other'] },
   { path: '/definitely-not-a-real-page', expect: ['404', 'Projects'] },
 ]
 
-// Home Labbing was cut; make sure nothing quietly reintroduces it.
-const FORBIDDEN = ['Home Lab', 'home-lab']
+// Cut content that should stay gone.
+const FORBIDDEN = ['Home Lab', 'home-lab', 'Work', 'Origami']
 
 const vite = await createServer({
   server: { middlewareMode: true },
@@ -129,7 +103,6 @@ const vite = await createServer({
   logLevel: 'error',
 })
 
-// Capture React's console warnings as failures rather than letting them scroll by.
 const warnings = []
 const realError = console.error
 console.error = (...args) => {
@@ -139,12 +112,6 @@ console.error = (...args) => {
 
 let failed = 0
 
-/*
- * Every page is a React.lazy chunk, so the first renderToString of a route only
- * produces the Suspense fallback. Rendering once to kick off the import, letting
- * the promise settle, then rendering again gives the real page markup — which is
- * the whole point of the check.
- */
 async function renderRoute(App, route) {
   const element = createElement(StaticRouter, { location: route }, createElement(App))
   renderToString(element)
@@ -155,8 +122,40 @@ async function renderRoute(App, route) {
 try {
   const { default: App } = await vite.ssrLoadModule('/src/App.jsx')
   const { pages } = await vite.ssrLoadModule('/src/routes.jsx')
+  const { articles } = await vite.ssrLoadModule('/src/lib/articles.js')
+  const { lifeSlugs } = await vite.ssrLoadModule('/src/content/life.js')
+  const { projects } = await vite.ssrLoadModule('/src/content/projects.js')
 
-  // Warm every chunk up front so no route is the unlucky one that pays for it.
+  const projectSlugs = new Set(projects.map((project) => project.slug))
+  const categorySet = new Set(lifeSlugs)
+
+  for (const article of articles) {
+    const badTags = article.tags.filter((tag) => !categorySet.has(tag))
+    const badProjects = article.projects.filter((slug) => !projectSlugs.has(slug))
+    if (badTags.length || badProjects.length) {
+      const problems = [
+        badTags.length ? `unknown tag(s) ${badTags.join(', ')}` : '',
+        badProjects.length ? `unknown project(s) ${badProjects.join(', ')}` : '',
+      ]
+        .filter(Boolean)
+        .join('; ')
+      console.log(`  FAIL  article ${article.slug.padEnd(24)} ${problems}`)
+      failed += 1
+    }
+
+    ROUTES.push({ path: `/life/articles/${article.slug}`, expect: [article.title] })
+
+    for (const tag of article.tags) {
+      const route = ROUTES.find((item) => item.path === `/life/${tag}`)
+      if (route && !route.expect.includes(article.title)) route.expect.push(article.title)
+    }
+
+    for (const slug of article.projects) {
+      const route = ROUTES.find((item) => item.path === `/projects/${slug}`)
+      if (route && !route.expect.includes(article.title)) route.expect.push(article.title)
+    }
+  }
+
   await Promise.all(Object.values(pages).map((page) => page.preload()))
 
   for (const { path, expect } of ROUTES) {
