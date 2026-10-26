@@ -11,12 +11,12 @@ import styles from './PageHeader.module.css'
  * Unlike <Reveal>, this animates on mount rather than on scroll — it is already
  * in view, and waiting for an intersection callback would read as a stutter.
  */
-export function PageHeader({ eyebrow, title, lede, children, align = 'left' }) {
+export function PageHeader({ eyebrow, title, lede, keepTitleCase = false }) {
   const reduced = useReducedMotion()
 
   return (
     <m.header
-      className={`${styles.header} ${align === 'center' ? styles.center : ''}`}
+      className={styles.header}
       variants={reduced ? still : stagger}
       initial="hidden"
       animate="visible"
@@ -27,7 +27,10 @@ export function PageHeader({ eyebrow, title, lede, children, align = 'left' }) {
         </m.p>
       )}
 
-      <m.h1 className={`display ${styles.title}`} variants={reduced ? still : fadeUp}>
+      <m.h1
+        className={`display ${styles.title} ${keepTitleCase ? 'keep-case' : ''}`}
+        variants={reduced ? still : fadeUp}
+      >
         <Copy>{title}</Copy>
       </m.h1>
 
@@ -35,12 +38,6 @@ export function PageHeader({ eyebrow, title, lede, children, align = 'left' }) {
         <m.p className={`lede ${styles.lede}`} variants={reduced ? still : fadeUp}>
           <Copy>{lede}</Copy>
         </m.p>
-      )}
-
-      {children && (
-        <m.div className={styles.extra} variants={reduced ? still : fadeUp}>
-          {children}
-        </m.div>
       )}
     </m.header>
   )

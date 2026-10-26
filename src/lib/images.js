@@ -76,6 +76,3 @@ export function getImage(key) {
     width: fallback.w,
   }
 }
-
-/** Debug helper: every key currently resolvable. */
-export const imageKeys = Object.keys(registry).sort()

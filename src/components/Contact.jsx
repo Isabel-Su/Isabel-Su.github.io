@@ -10,13 +10,13 @@ export const contactItems = [
 ]
 
 /**
- * Contact links, shared between the About page block and the footer.
+ * Contact block on the About page; the footer renders `contactItems` itself.
  * Plain links, no form — there is no backend behind a static site, and a form
  * that silently fails is worse than no form.
  */
-export function ContactLinks({ size = 'lg' }) {
+export function ContactLinks() {
   return (
-    <ul className={`${styles.list} ${size === 'sm' ? styles.sm : ''}`}>
+    <ul className={styles.list}>
       {contactItems.map((item) => (
         <li key={item.label} className={styles.item}>
           <span className={`eyebrow ${styles.label}`}>{item.label}</span>

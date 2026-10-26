@@ -25,7 +25,7 @@ export function ProjectCard({ project, priority = false, sizes }) {
           <span className={`eyebrow ${styles.period}`}>{project.period}</span>
         </div>
 
-        <h2 className={styles.title}>{project.title}</h2>
+        <h2 className={`${styles.title} keep-case`}>{project.title}</h2>
         <p className={styles.tagline}>
           <Copy>{project.tagline}</Copy>
         </p>

@@ -6,27 +6,12 @@ import { fadeUp, fadeUpTight, stagger, still } from './tokens'
  * distance, duration, and trigger point are identical on every page.
  *
  * @param {string}  as       html tag to render (default 'div')
- * @param {number}  delay    seconds to hold before animating
  * @param {boolean} tight    shorter travel, for items nested inside a revealed block
  */
-export function Reveal({
-  as = 'div',
-  delay = 0,
-  tight = false,
-  className,
-  children,
-  ...rest
-}) {
+export function Reveal({ as = 'div', tight = false, className, children, ...rest }) {
   const reduced = useReducedMotion()
   const Tag = m[as] ?? m.div
-  const base = reduced ? still : tight ? fadeUpTight : fadeUp
-
-  // The delay has to be folded into the variant itself. A `transition` prop is
-  // only a default — a variant that carries its own transition (all of ours do)
-  // overrides it wholesale, and the delay would silently do nothing.
-  const variants = delay
-    ? { ...base, visible: { ...base.visible, transition: { ...base.visible.transition, delay } } }
-    : base
+  const variants = reduced ? still : tight ? fadeUpTight : fadeUp
 
   return (
     <Tag

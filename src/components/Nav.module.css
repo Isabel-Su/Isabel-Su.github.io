@@ -84,7 +84,7 @@
   display: none;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--ink-soft);
 }
 

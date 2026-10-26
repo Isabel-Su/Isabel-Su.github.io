@@ -12,7 +12,6 @@
    */
   --paper: #f7f4ef; /* warm off-white ground */
   --paper-sunk: #efeae2; /* recessed panels, empty image frames */
-  --paper-deep: #e7e0d5; /* rare third step, hover on sunk surfaces */
 
   --ink: #211e1a; /* warm near-black — body and display type */
   --ink-soft: #57514a; /* secondary text, captions, lede */
@@ -68,7 +67,6 @@
   /* ---- Layout ----------------------------------------------------------- */
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --container: 74rem;
-  --container-narrow: 46rem;
   --measure: 62ch; /* comfortable reading width for body copy */
 
   /* ---- Motion ----------------------------------------------------------- */

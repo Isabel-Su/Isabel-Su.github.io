@@ -1,8 +1,5 @@
 .section {
   padding-block: clamp(2rem, 5vw, 3.5rem);
-}
-
-.split {
   display: grid;
   grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
   gap: clamp(1.5rem, 5vw, 5rem);
@@ -38,7 +35,7 @@
 }
 
 @media (max-width: 860px) {
-  .split {
+  .section {
     grid-template-columns: 1fr;
     gap: var(--space-5);
   }

@@ -6,14 +6,11 @@ import { useDocumentTitle } from '../lib/useDocumentTitle'
 import styles from './ProjectsIndex.module.css'
 
 export default function ProjectsIndex() {
-  useDocumentTitle('Projects')
-
   return (
     <div className="container">
       <PageHeader
-        eyebrow={`${projects.length} projects`}
+        eyebrow={`Projects`}
         title="Things I've built."
-        lede="End-to-end solutions to problems I'm passionate about, packaged in the form of apps and websites."
       />
 
       <Stagger className={styles.grid}>

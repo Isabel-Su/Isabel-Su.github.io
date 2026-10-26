@@ -27,3 +27,5 @@ assets-raw/
 *.njsproj
 *.sln
 *.sw?
+src/content/articles/.obsidian/
+

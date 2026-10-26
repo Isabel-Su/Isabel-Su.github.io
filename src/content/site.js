@@ -4,8 +4,8 @@
  */
 
 export const site = {
-  name: 'Isabel Su',
-  initials: 'IS',
+  name: 'isabel su',
+  initials: 'isu',
 
   // Drop a file at src/assets/images/home/banner-<width>.jpg (or run
   // `npm run images` from assets-raw/home/banner.jpg). Until then the home
@@ -14,11 +14,6 @@ export const site = {
     key: 'home/banner',
     alt: '',
   },
-
-  // Home opening blurb. Deliberately written without naming projects or roles
-  // so it does not go stale as the work behind it changes.
-  identity:
-    'I’m drawn to problems where the hard part is the thinking. I love working with other passionate people and building things that hold up over time, whether that means a polished app or a well-documented codebase.',
 
   education: {
     school: 'Georgia Institute of Technology',
@@ -39,15 +34,15 @@ export const site = {
 
   // Nav order = the order these appear in the header and on the home page.
   nav: [
+    { label: 'Resume', href: '/resume.pdf', external: true },
     { label: 'Projects', to: '/projects' },
-    { label: 'Work', to: '/work' },
-    { label: 'Hobbies', to: '/hobbies' },
+    { label: 'Life', to: '/life' },
     { label: 'About', to: '/about' },
   ],
 }
 
 /**
- * The four entry points on the home page. `blurb` is the one-line description
+ * The 3 entry points on the home page. `blurb` is the one-line description
  * under each; keep them short — they're read at a glance, not studied.
  *
  * These describe what each page is rather than what is currently on it, so
@@ -57,21 +52,16 @@ export const entryPoints = [
   {
     to: '/projects',
     label: 'Projects',
-    blurb: 'The work I pick up on my own, start to finish.',
+    blurb: 'Solutions to problems',
   },
   {
-    to: '/work',
-    label: 'Work',
-    blurb: 'Research, teaching, and industry — where I’ve been paid to learn.',
-  },
-  {
-    to: '/hobbies',
-    label: 'Hobbies',
-    blurb: 'What I’m doing when I’m not at a keyboard.',
+    to: '/life',
+    label: 'Life',
+    blurb: 'What I’m doing when I’m not at a keyboard',
   },
   {
     to: '/about',
     label: 'About',
-    blurb: 'My story, plus how to reach me.',
+    blurb: 'My story, plus how to reach me',
   },
 ]

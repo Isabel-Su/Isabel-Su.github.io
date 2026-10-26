@@ -9,25 +9,25 @@ export const pages = {
   home: lazyWithPreload(() => import('./pages/Home')),
   projects: lazyWithPreload(() => import('./pages/ProjectsIndex')),
   projectDetail: lazyWithPreload(() => import('./pages/ProjectDetail')),
-  work: lazyWithPreload(() => import('./pages/Work')),
-  hobbies: lazyWithPreload(() => import('./pages/HobbiesIndex')),
-  hobbyDetail: lazyWithPreload(() => import('./pages/HobbyDetail')),
+  life: lazyWithPreload(() => import('./pages/LifeIndex')),
+  lifeCategory: lazyWithPreload(() => import('./pages/LifeCategory')),
+  article: lazyWithPreload(() => import('./pages/Article')),
   about: lazyWithPreload(() => import('./pages/About')),
   notFound: lazyWithPreload(() => import('./pages/NotFound')),
 }
 
 /*
- * Project and hobby detail pages are single :slug routes driven by the content
- * files — adding an entry to src/content/projects.js creates a working URL with
- * no change here.
+ * Project, life category, and article pages are single :slug routes driven by
+ * content files — adding a project or dropping a markdown file creates a
+ * working URL with no change here.
  */
 export const routes = [
   { path: '/', Component: pages.home },
   { path: '/projects', Component: pages.projects },
   { path: '/projects/:slug', Component: pages.projectDetail },
-  { path: '/work', Component: pages.work },
-  { path: '/hobbies', Component: pages.hobbies },
-  { path: '/hobbies/:slug', Component: pages.hobbyDetail },
+  { path: '/life', Component: pages.life },
+  { path: '/life/articles/:slug', Component: pages.article },
+  { path: '/life/:slug', Component: pages.lifeCategory },
   { path: '/about', Component: pages.about },
   { path: '*', Component: pages.notFound },
 ]
@@ -39,7 +39,9 @@ export function preloadFor(to) {
 
   if (!head) return pages.home.preload()
   if (head === 'projects') return (tail ? pages.projectDetail : pages.projects).preload()
-  if (head === 'hobbies') return (tail ? pages.hobbyDetail : pages.hobbies).preload()
-  if (head === 'work') return pages.work.preload()
+  if (head === 'life') {
+    if (tail === 'articles') return pages.article.preload()
+    return (tail ? pages.lifeCategory : pages.life).preload()
+  }
   if (head === 'about') return pages.about.preload()
 }

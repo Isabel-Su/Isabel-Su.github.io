@@ -1,24 +1,24 @@
+/* ---- Snap panels ---------------------------------------------------------- */
+
+.panel {
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+:global(html.home-snap) .panel {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100svh;
+}
+
 /* ---- Hero ----------------------------------------------------------------- */
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  /* Banner + blurb are one first screen. svh stays put when mobile chrome
-     shows or hides, so this does not jump or overflow the fold. Extra space
-     goes into the photo, not empty paper under the blurb. */
-  min-height: 100svh;
-  box-sizing: border-box;
-  padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
-}
-
-/* Grows to fill everything above the blurb, so the image stops under the name. */
-.bannerPanel {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  flex: 1 1 auto;
-  padding-top: var(--page-top);
+  overflow: hidden;
 }
 
 .bannerMedia {
@@ -27,13 +27,14 @@
   z-index: 0;
   overflow: hidden;
   background: var(--paper-sunk);
+  transform-origin: center center;
 }
 
 .bannerCopy {
   position: relative;
   z-index: 1;
-  /* A little air so the name does not sit flush on the image’s bottom edge. */
-  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding-top: var(--page-top);
+  padding-bottom: clamp(3.5rem, 8vw, 5.5rem);
 }
 
 .eyebrow {
@@ -41,8 +42,6 @@
 }
 
 .name {
-  /* Nudged past the container edge so the stem of the I sits on the margin
-     rather than being optically indented by its own side bearing. */
   margin-left: -0.045em;
   max-width: 12ch;
 }
@@ -72,27 +71,15 @@
   z-index: 1;
 }
 
-.statementWrap {
-  position: relative;
-  z-index: 1;
-  flex: 0 0 auto;
-  padding-top: clamp(1.5rem, 4vw, 2.25rem);
+/* ---- Second screen -------------------------------------------------------- */
+
+.next {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(2rem, 6vw, 4rem);
 }
 
-.statement {
-  font-size: var(--text-lg);
-  line-height: 1.5;
-  color: var(--ink-soft);
-  max-width: 54ch;
-  text-wrap: pretty;
-}
-
-/* ---- Section index -------------------------------------------------------- */
-
-.index {
-  padding-block: var(--section-y);
-  border-top: 1px solid var(--rule);
-}
 
 .row {
   display: grid;
@@ -115,7 +102,6 @@
   font-size: var(--text-2xl);
   letter-spacing: var(--tracking-tight);
   color: var(--ink);
-  /* transform-origin left keeps the shift a pure translate, no reflow. */
   transition: color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
 }
 
@@ -123,10 +109,6 @@
   font-size: var(--text-sm);
   color: var(--ink-faint);
   transition: color var(--dur-base) var(--ease);
-}
-
-.rowBlurb.placeholder {
-  color: var(--clay);
 }
 
 .rowArrow {
