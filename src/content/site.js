@@ -4,7 +4,7 @@
  */
 
 export const site = {
-  name: 'Isabel Su',
+  name: 'isabel su',
   initials: 'isu',
 
   // Drop a file at src/assets/images/home/banner-<width>.jpg (or run
